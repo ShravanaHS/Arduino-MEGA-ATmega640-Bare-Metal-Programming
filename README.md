@@ -2,7 +2,7 @@
 Direct register manipulation assignments for ATmega 640/2560 using Wokwi simulation.
 
 ## Progress Table
-
+## Set 1 Assignments 
 | Problem | Objective | Registers Used | Simulation |
 | :--- | :--- | :--- | :---: |
 | [Problem 1](./ETALVIS_LED_Set_1_Problem_1/) | Connect LED to Port J bit 0 | DDRJ, PORTJ | [Link](https://wokwi.com/projects/450218684197143553) |
@@ -16,7 +16,7 @@ Direct register manipulation assignments for ATmega 640/2560 using Wokwi simulat
 | [Problem 9](./ETALVIS_LED_Set_1_Problem_9/) | Connect 8 LEDs to Port L (Even) | DDRL, PORTL | [Link](https://wokwi.com/projects/450288081398026241) |
 | [Problem 10](./ETALVIS_LED_Set_1_Problem_10/) | Connect 8 LEDs to Port E (Specific) | DDRE, PORTE | [Link](https://wokwi.com/projects/450288106353088513) |
 
-## Set 2 Assignments (ETALVIS LED)
+## Set 2 Assignments 
 
 | Problem | Objective | Registers Used | Simulation |
 | :--- | :--- | :--- | :---: |
