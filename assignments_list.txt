@@ -9,9 +9,17 @@ ETALVIS_LED_Set_1_Problem_8: [https://wokwi.com/projects/450288060923527169]
 ETALVIS_LED_Set_1_Problem_9: [https://wokwi.com/projects/450288081398026241]
 ETALVIS_LED_Set_1_Problem_10: [https://wokwi.com/projects/450288106353088513]
 
-ETALVIS LED Set 2 (Complete)
+ETALVIS LED Set 2 
 ETALVIS_LED_Set_2_Problem_1: [https://wokwi.com/projects/450837212305922049]
- ETALVIS_LED_Set_2_Problem_2: [https://wokwi.com/projects/450839093411595265]
-  ETALVIS_LED_Set_2_Problem_3: [https://wokwi.com/projects/450840620058693633]
-   ETALVIS_LED_Set_2_Problem_4: [https://wokwi.com/projects/451214774943659009]
-    ETALVIS_LED_Set_2_Problem_5: [https://wokwi.com/projects/451214789547181057] ETALVIS_LED_Set_2_Problem_6: [https://wokwi.com/projects/450851741143461889] ETALVIS_LED_Set_2_Problem_7: [https://wokwi.com/projects/450854181787164673] ETALVIS_LED_Set_2_Problem_8: [https://wokwi.com/projects/451214702764919809] ETALVIS_LED_Set_2_Problem_9: [https://wokwi.com/projects/451214725256879105] ETALVIS_LED_Set_2_Problem_10: [https://wokwi.com/projects/451214741914558465]
+ETALVIS_LED_Set_2_Problem_2: [https://wokwi.com/projects/450839093411595265]
+ETALVIS_LED_Set_2_Problem_3: [https://wokwi.com/projects/450840620058693633]
+ETALVIS_LED_Set_2_Problem_4: [https://wokwi.com/projects/451214774943659009]
+ETALVIS_LED_Set_2_Problem_5: [https://wokwi.com/projects/451214789547181057] 
+ETALVIS_LED_Set_2_Problem_6: [https://wokwi.com/projects/450851741143461889] 
+ETALVIS_LED_Set_2_Problem_7: [https://wokwi.com/projects/450854181787164673] 
+ETALVIS_LED_Set_2_Problem_8: [https://wokwi.com/projects/451214702764919809] 
+ETALVIS_LED_Set_2_Problem_9: [https://wokwi.com/projects/451214725256879105] 
+ETALVIS_LED_Set_2_Problem_10: [https://wokwi.com/projects/451214741914558465]
+
+ETALVIS LED Set 3 
+ETALVIS_LED_Set_3_Problem_1: [https://wokwi.com/projects/451229712541347841] ETALVIS_LED_Set_3_Problem_2: [https://wokwi.com/projects/451230358004944897] ETALVIS_LED_Set_3_Problem_3: [https://wokwi.com/projects/451230371206518785] ETALVIS_LED_Set_3_Problem_4: [https://wokwi.com/projects/451230395192699905] ETALVIS_LED_Set_3_Problem_5: [https://wokwi.com/projects/451230414750740481] ETALVIS_LED_Set_3_Problem_6: [https://wokwi.com/projects/451230437858215937] ETALVIS_LED_Set_3_Problem_7: [https://wokwi.com/projects/451233275591356417] ETALVIS_LED_Set_3_Problem_8: [https://wokwi.com/projects/451233349303119873] ETALVIS_LED_Set_3_Problem_9: [https://wokwi.com/projects/451233426803376129] ETALVIS_LED_Set_3_Problem_10: [https://wokwi.com/projects/451233531907399681]

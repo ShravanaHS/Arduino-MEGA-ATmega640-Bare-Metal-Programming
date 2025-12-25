@@ -30,3 +30,19 @@ Direct register manipulation assignments for ATmega 640/2560 using Wokwi simulat
 | [Problem 8](./ETALVIS_LED_Set_2_Problem_8/) | Connect 8 LEDs to Port F (4-7 Seq) | DDRF, PORTF | [Link](https://wokwi.com/projects/451214702764919809) |
 | [Problem 9](./ETALVIS_LED_Set_2_Problem_9/) | Connect 8 LEDs to Port F (7-4 Reverse) | DDRF, PORTF | [Link](https://wokwi.com/projects/451214725256879105) |
 | [Problem 10](./ETALVIS_LED_Set_2_Problem_10/) | Connect 8 LEDs to Port F (Mismatch: Code 7-4 / Obj 3-0) | DDRF, PORTF | [Link](https://wokwi.com/projects/451214741914558465) |
+
+## Set 3 Assignments (ETALVIS LED)
+
+| Problem | Objective | Registers Used | Simulation |
+| :--- | :--- | :--- | :---: |
+| [Problem 1](./ETALVIS_LED_Set_3_Problem_1/) | Connect 8 LEDs to Port A (Pairs 0,4...3,7) | DDRA, PORTA | [Link](https://wokwi.com/projects/451229712541347841) |
+| [Problem 2](./ETALVIS_LED_Set_3_Problem_2/) | Connect 8 LEDs to Port A (Sequence Pairs 0-4 w/ Clear) | DDRA, PORTA | [Link](https://wokwi.com/projects/451230358004944897) |
+| [Problem 3](./ETALVIS_LED_Set_3_Problem_3/) | Connect 8 LEDs to Port A (Sequence 0-7, 7-0) | DDRA, PORTA | [Link](https://wokwi.com/projects/451230371206518785) |
+| [Problem 4](./ETALVIS_LED_Set_3_Problem_4/) | Connect 8 LEDs to Port A (Pattern 0,2,1,3...) | DDRA, PORTA | [Link](https://wokwi.com/projects/451230395192699905) |
+| [Problem 5](./ETALVIS_LED_Set_3_Problem_5/) | Connect 8 LEDs to Port A (Pairs 01, 67, 23, 45) | DDRA, PORTA | [Link](https://wokwi.com/projects/451230414750740481) |
+| [Problem 6](./ETALVIS_LED_Set_3_Problem_6/) | Connect 8 LEDs to Port A (Pairs 45, 23, 67, 01) | DDRA, PORTA | [Link](https://wokwi.com/projects/451230437858215937) |
+| [Problem 7](./ETALVIS_LED_Set_3_Problem_7/) | Connect 8 LEDs to Port A (Groups 012, 567, 34) | DDRA, PORTA | [Link](https://wokwi.com/projects/451233275591356417) |
+| [Problem 8](./ETALVIS_LED_Set_3_Problem_8/) | Connect 8 LEDs to Port A (Groups 34, 567, 012) | DDRA, PORTA | [Link](https://wokwi.com/projects/451233349303119873) |
+| [Problem 9](./ETALVIS_LED_Set_3_Problem_9/) | Connect 8 LEDs to Port A (Accumulate 0-7) | DDRA, PORTA | [Link](https://wokwi.com/projects/451233426803376129) |
+| [Problem 10](./ETALVIS_LED_Set_3_Problem_10/) | Connect 8 LEDs to Port A (Accumulate 7-0) | DDRA, PORTA | [Link](https://wokwi.com/projects/451233531907399681) |
+
