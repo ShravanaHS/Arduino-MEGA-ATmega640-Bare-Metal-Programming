@@ -31,7 +31,7 @@ Direct register manipulation assignments for ATmega 640/2560 using Wokwi simulat
 | [Problem 9](./ETALVIS_LED_Set_2_Problem_9/) | Connect 8 LEDs to Port F (7-4 Reverse) | DDRF, PORTF | [Link](https://wokwi.com/projects/451214725256879105) |
 | [Problem 10](./ETALVIS_LED_Set_2_Problem_10/) | Connect 8 LEDs to Port F (Mismatch: Code 7-4 / Obj 3-0) | DDRF, PORTF | [Link](https://wokwi.com/projects/451214741914558465) |
 
-## Set 3 Assignments (ETALVIS LED)
+## Set 3 Assignments 
 
 | Problem | Objective | Registers Used | Simulation |
 | :--- | :--- | :--- | :---: |
