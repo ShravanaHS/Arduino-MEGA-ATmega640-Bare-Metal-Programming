@@ -1,44 +1,64 @@
-# ETALVIS_LED_Set_1_Problem_1
+# Set 1 Problem 1: Single LED Blink (Port J)
 
-## Objective
-Connect a LED to port J bit 0. Glow LSB LED only (bit 0)
+## Problem Statement
+We want to connect a single LED to the Arduino Mega and make it blink.
+Specifically, we will connect it to **Port J** at **Bit 0** (Pin 14 on the board).
+1.  Turn the LED ON.
+2.  Wait for a while.
+3.  Turn the LED OFF.
+4.  Repeat.
 
-## Bare Metal Logic
-- **Register Addresses**:
-  - `DDRJ` (Data Direction Register for Port J) is accessed at address `0x104`.
-  - `PORTJ` (Data Register for Port J) is accessed at address `0x105`.
-- **Volatile Pointers**:
-  - `volatile char *dirj` and `volatile char *portj` are used to create pointers to these specific hardware addresses.
-  - The `volatile` keyword tells the compiler not to optimize access to these variables, ensuring every read/write goes directly to the memory-mapped IO register.
+## Simple Explanation
+Think of a "Port" like a power strip with 8 sockets, numbered 0 to 7. We are plugging a lamp (LED) into socket #0.
+To turn it on, we need to flip the switch for socket #0 to "ON" (send a `1`).
+To turn it off, we flip the switch to "OFF" (send a `0`).
 
-## Circuit Simulation
-[Link to Wokwi Simulation](https://wokwi.com/projects/450218684197143553)
+## Hardware Setup
+-   **Port J**: A specific group of pins on the microcontroller.
+-   **Bit 0**: The first pin in that group.
+-   **Registers**:
+    -   `DDRJ` (`0x104`): Controls direction (Input/Output). We need Output to power the LED.
+    -   `PORTJ` (`0x105`): Controls the signal (High/Low).
 
-## Code
+## Code Analysis
+
 ```c
-//Problem: Connect a LED to port J bit 0. Glow LSB LED only (bit 0)
-
-
-/* here port j is pin 14 -- pin 21 
-so port j bit 0 is pin 14 in hardware
-in order to access those here direction register address is 104
-port address is 105*/
+// Problem: Connect a LED to port J bit 0. Glow LSB LED only (bit 0)
 
 void setup() {
-  // put your setup code here, to run once:
-  volatile char *dirj;
-  dirj = 0X104;  //accessing DDR of J port
-  *dirj = 0XFF;   // setting it as output
+  /* 
+   * STEP 1: Configure the Direction
+   * We need to tell the microcontroller that Port J will be used for OUTPUT (sending power out).
+   * The address of the Data Direction Register for Port J (DDRJ) is 0x104.
+   */
+  volatile char *dirj;  // Create a pointer variable
+  dirj = 0x104;         // Point it to address 0x104 (DDRJ)
+  *dirj = 0xFF;         // Write 0xFF (11111111) to set ALL pins on Port J as Output.
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
-volatile char *portj;
-portj = 0X105;
-*portj = 0x01;
+  /* 
+   * STEP 2: Control the Light
+   * The address of the Data Register for Port J (PORTJ) is 0x105.
+   */
+  volatile char *portj; // Create a pointer
+  portj = 0x105;        // Point it to address 0x105 (PORTJ)
 
+  // Turn ON Bit 0
+  // 0x01 in Hex is 00000001 in Binary.
+  // This sends HIGH voltage to bit 0, turning the LED on.
+  *portj = 0x01;
+  
+  // Note: This code lacks a delay() and a turn-off step, so the LED will just stay on forever!
+  // In a proper blink program, we would add a delay and then set it to 0x00.
 }
 ```
 
-## Visual
-![Simulation Output](./output.png)
+## What I Learnt
+-   **Pointers**: Accessing hardware registers directly using pointers (e.g., `*dirj = 0xFF`).
+-   **Memory Addresses**: Every pin on the Arduino maps to a specific number address in memory (like `0x104`).
+-   **Volatile**: A keyword ensuring the computer doesn't "forget" to check these real-world addresses.
+
+## Visuals
+![Simulation Output](./simulation_screenshot.png)
+[Click here to run the simulation on Wokwi](https://wokwi.com/projects/450218684197143553)

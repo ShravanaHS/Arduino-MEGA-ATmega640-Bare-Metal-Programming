@@ -1,43 +1,37 @@
-# ETALVIS_LED_Set_3_Problem_8
+# Set 3 Problem 8: Scrambled Groups (Port A)
 
-## Objective
-Glow LEDs in the following groups: (3,4), then (5,6,7), then (0,1,2).
+## Problem Statement
+Connect 8 LEDs to **Port A**.
+Flash groups in this order:
+1.  Middle Two (3, 4).
+2.  Top Three (5, 6, 7).
+3.  Bottom Three (0, 1, 2).
 
-## Bare Metal Logic
-This code configures **Port A** (Registers `DDRA`, `PORTA`) to drive 8 LEDs.
-- **Header**: `#include <stdint.h>`
-- **Registers**:
-  - `DDRA (0x21)`: Data Direction Register for Port A. Set to `0xFF` to configure all pins as outputs.
-  - `PORTA (0x22)`: Data Register for Port A.
-- **Operation**:
-  - Uses `pattern[3] = {0x18, 0xE0, 0x07}`.
-    - `0x18`: bits 3, 4.
-    - `0xE0`: bits 5, 6, 7.
-    - `0x07`: bits 0, 1, 2.
-  - The loop iterates from `i = 0` to `2`.
-  - Turns on LEDs based on the pattern, waits, turns them off, and waits again.
+## Simple Explanation
+This repeats the patterns from Problem 7 but changes the **sequence** in which they are played.
+-   Start with the center.
+-   Jump to the top.
+-   Jump to the bottom.
 
-## Wokwi Link
-[Problem 8 Simulation](https://wokwi.com/projects/451233349303119873)
+## Hardware Setup
+-   **Port A**: Address `0x22`.
 
-## Code
+## Code Analysis
+
 ```c
-// pattern  34, 567, 012
 #include <stdint.h>
-
 #define DDRA  (*(volatile uint8_t*)0x21)
 #define PORTA (*(volatile uint8_t*)0x22)
 
+// The same hex codes as Problem 7, just re-arranged!
 uint8_t pattern[3] = {
-    0x18,   // 34
-    0xE0,   // 567
-    0x07    // 012
+    0x18,   // LEDs 3,4
+    0xE0,   // LEDs 5,6,7
+    0x07    // LEDs 0,1,2
 };
 
 void delay1sec(void){
-    TCNT1  = 0;
-    TCCR1A = 0x00;
-    TCCR1B = 0x05;
+    TCNT1  = 0; TCCR1A = 0x00; TCCR1B = 0x05;
     while (TCNT1 < 15625);
     TCCR1B = 0x00;
 }
@@ -56,5 +50,9 @@ void loop() {
 }
 ```
 
+## What I Learnt
+-   **Data-Driven Logic**: To change the animation, I didn't touch the `loop` code at all. I only changed the `pattern` array. This is good software design.
+
 ## Visuals
-![Wiring Diagram](placeholder_image_link_or_description)
+![Simulation Output](./simulation_screenshot.png)
+[Click here to run the simulation on Wokwi](https://wokwi.com/projects/451233349303119873)

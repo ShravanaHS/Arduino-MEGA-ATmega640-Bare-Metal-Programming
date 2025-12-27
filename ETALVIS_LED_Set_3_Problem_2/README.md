@@ -1,39 +1,26 @@
-# ETALVIS_LED_Set_3_Problem_2
+# Set 3 Problem 2: Parallel Pairs with Assignment (Port A)
 
-## Objective
-Connect 8 LEDs to Port A and blink pairs (0 & 4), (1 & 5), (2 & 6), (3 & 7) sequentially.
+## Problem Statement
+Connect 8 LEDs to **Port A**.
+Light up pairs: (0 & 4), (1 & 5), (2 & 6), (3 & 7).
+**Difference from Problem 1**: In Problem 1, we used `|=` (OR) to add lights (though we cleared them after). Here, typically we use `=` (Assignment) to ensure only the specific pair is lit.
 
-## Bare Metal Logic
-This code configures **Port A** (Registers `DDRA`, `PORTA`) to drive 8 LEDs.
-- **Header**: `#include <stdint.h>`
-- **Registers**:
-  - `DDRA (0x21)`: Data Direction Register for Port A. Set to `0xFF` to configure all pins as outputs.
-  - `PORTA (0x22)`: Data Register for Port A.
-- **Operation**:
-  - The loop iterates from `i = 0` to `3`.
-  - In each iteration, it sets `PORTA` to turn on LEDs at bit `i` and `i+4`.
-  - It waits for 1 second.
-  - It clears `PORTA` (0x00) to turn off all LEDs.
-  - It waits for 1 second.
-  - This blink pattern is similar to Problem 1 but ensures all other LEDs are off during the "ON" phase by direct assignment.
+## Simple Explanation
+Same as Problem 1. Two lights move in sync down the line.
 
-## Wokwi Link
-[Problem 2 Simulation](https://wokwi.com/projects/451230358004944897)
+## Hardware Setup
+-   **Port A**: Address `0x22`.
 
-## Code
+## Code Analysis
+
 ```c
 #include <stdint.h>
-
 #define DDRA  (*(volatile uint8_t*)0x21)
 #define PORTA (*(volatile uint8_t*)0x22)
 
 void delay1sec(void){
-    TCNT1 = 0;
-    TCCR1A = 0x00;
-    TCCR1B = 0x05;
-
+    TCNT1 = 0; TCCR1A = 0x00; TCCR1B = 0x05;
     while (TCNT1 < 15625);
-
     TCCR1B = 0x00;
 }
 
@@ -42,8 +29,13 @@ void setup() {
 }
 
 void port_led(int i){
+    // Using '=' sets the EXACT state.
+    // If i=0, Pattern 00010001 is written.
+    // Any other lights that might have been on would be forced OFF immediately.
     PORTA = (1<<i) | (1<<(i+4));
     delay1sec();
+    
+    // Clear All
     PORTA = 0x00;
     delay1sec();
 }
@@ -55,5 +47,9 @@ void loop() {
 }
 ```
 
+## What I Learnt
+-   **Consistency**: Using `=` (Assignment) is safer when you want to guarantee a "Frame" of animation where only specific things are on.
+
 ## Visuals
-![Wiring Diagram](placeholder_image_link_or_description)
+![Simulation Output](./simulation_screenshot.png)
+[Click here to run the simulation on Wokwi](https://wokwi.com/projects/451230358004944897)

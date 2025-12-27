@@ -1,60 +1,56 @@
-# ETALVIS_LED_Set_2_Problem_3
+# Set 2 Problem 3: Sequential Single Blink (Port C)
 
-## Objective
-connect 8 leds to port A blink them all (Note: Code uses Port C)
+## Problem Statement
+Connect 8 LEDs to **Port C**.
+Blink them one at a time in order: LED 0, then LED 1, then LED 2... up to LED 7.
+Only ONE LED should be on at a time.
 
-## Bare Metal Logic
-This code configures **Port C** (Registers `DDRC`, `PORTC`) to drive 8 LEDs.
-- **Header**: `#include <stdint.h>`
-- **Registers**:
-  - `DDRC (0x27)`: Data Direction Register for Port C. Set to `0xFF` via bitwise ORing all 8 bits.
-  - `PORTC (0x28)`: Data Register for Port C.
-  - `TCNT1`, `TCCR1A`, `TCCR1B`: Timer1 registers used for delay.
-- **Sequence**:
-  - The loop iterates from 0 to 7.
-  - Inside the loop, it turns ON the ith LED on Port C.
-  - Waits for 1 second.
-  - Turns OFF that specific LED.
-  - Waits for 1 second.
-  - Repeats for the next LED.
+## Simple Explanation
+This is the classic "Knight Rider" or "Scanner" effect (in one direction). The light moves from one end to the other.
 
-## Wokwi Link
-[Problem 3 Simulation](https://wokwi.com/projects/450840620058693633)
+## Hardware Setup
+-   **Port C**: Address `0x28`.
+-   **Registers**: `DDRC` (`0x27`), `PORTC` (`0x28`).
 
-## Code
+## Code Analysis
+
 ```c
-//connect 8 leds to port A blink them all
-
 #include <stdint.h>
-
 #define DDRC (*(volatile uint8_t*)0x27)
 #define PORTC (*(volatile uint8_t*)0x28)
 
 void delay1sec(void){
-    TCNT1 = 0;        
-    TCCR1A = 0x00;    
-    TCCR1B = 0x05;   
-
-    while (TCNT1 < 15625); 
-
-    TCCR1B = 0x00;   
+    TCNT1 = 0; TCCR1A = 0x00; TCCR1B = 0x05;
+    while (TCNT1 < 15625);
+    TCCR1B = 0x00;
 }
 
 void setup() {
-  // put your setup code here, to run once:
-  DDRC |= (1<<0)|(1<<1)|(1<<2)|(1<<3)|(1<<4)|(1<<5)|(1<<6)|(1<<7);
+  // Set all pins to Output
+  DDRC |= 0xFF;
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
+  // Using a FOR Loop to automate the sequence
   for(int i = 0 ; i < 8 ; i++){
+    
+    // 1. Turn ON the current LED (i)
+    // '|=' adds this light to whatever is there (though usually others are off)
     PORTC |= (1<<i);
     delay1sec();
+    
+    // 2. Turn OFF the current LED (i)
+    // '&=' with '~' removes just this light.
     PORTC &= ~((1<<i));
     delay1sec();
   }
 }
 ```
 
+## What I Learnt
+-   **Loops**: Using `for (i=0; i<8)` replaces writing 8 blocks of identical code.
+-   **Variable Shift**: Using `(1 << i)` allows us to target a different pin dynamically in each iteration of the loop.
+
 ## Visuals
-![Wiring Diagram](placeholder_image_link_or_description)
+![Simulation Output](./simulation_screenshot.png)
+[Click here to run the simulation on Wokwi](https://wokwi.com/projects/450840620058693633)

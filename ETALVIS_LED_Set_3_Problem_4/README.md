@@ -1,56 +1,61 @@
-# ETALVIS_LED_Set_3_Problem_4
+# Set 3 Problem 4: Custom Array Sequence (Port A)
 
-## Objective
-Connect LEDs to Port A and glow them in the order: 0, 2, 1, 3, 4, 6, 5, 7.
+## Problem Statement
+Connect 8 LEDs to **Port A**.
+Blink them in a **Custom Chaotic Order**: 0, 2, 1, 3, 4, 6, 5, 7.
 
-## Bare Metal Logic
-This code configures **Port A** (Registers `DDRA`, `PORTA`) to drive 8 LEDs.
-- **Header**: `#include <stdint.h>`
-- **Registers**:
-  - `DDRA (0x21)`: Data Direction Register for Port A. Set to `0xFF` to configure all pins as outputs.
-  - `PORTA (0x22)`: Data Register for Port A.
-- **Operation**:
-  - Uses an array `pattern[8] = {0, 2, 1, 3, 4, 6, 5, 7}` to define the sequence.
-  - The loop iterates from `i = 0` to `7`.
-  - In each iteration, it accesses `pattern[i]` to determine which bit to set.
-  - Sets `PORTA = (1 << pattern[i])` to turn on the specific LED.
-  - Waits 1 second, turns off all LEDs (`PORTA = 0x00`), and waits again.
+## Simple Explanation
+Instead of 1-2-3-4 (Counting), we want to jump around.
+We use a "lookup table" (an Array) to tell us where to go next.
+-   Step 0: Go to LED 0.
+-   Step 1: Go to LED 2.
+-   Step 2: Go to LED 1.
+...
 
-## Wokwi Link
-[Problem 4 Simulation](https://wokwi.com/projects/451230395192699905)
+## Hardware Setup
+-   **Port A**: Address `0x22`.
 
-## Code
+## Code Analysis
+
 ```c
-//connect leds to port A glow in this order 0,2,1,3,4,6,5,7
-
 #include <stdint.h>
-
 #define DDRA (*(volatile uint8_t*)0x21)
 #define PORTA (*(volatile uint8_t*)0x22)
 
+// The Lookup Table
+// We define the specific order we want here.
 uint8_t pattern[8] = {0, 2, 1, 3, 4, 6, 5, 7};
 
 void delay1sec(void){
-    TCNT1  = 0;
-    TCCR1A = 0x00;
-    TCCR1B = 0x05;
+    TCNT1  = 0; TCCR1A = 0x00; TCCR1B = 0x05;
     while (TCNT1 < 15625);
     TCCR1B = 0x00;
 }
 
 void setup() {
-    DDRA = 0xFF;
+    DDRA = 0xFF; // All Output
 }
 
 void loop() {
+    // Iterate through the 8 steps of our sequence
     for (uint8_t i = 0; i < 8; i++) {
-        PORTA = (1 << pattern[i]);
+        // Read the target LED pin from the array using 'i' as the index.
+        uint8_t targetPin = pattern[i];
+        
+        // Turn ON that pin
+        PORTA = (1 << targetPin);
         delay1sec();
+        
+        // Turn OFF
         PORTA = 0x00;
         delay1sec();
     }
 }
 ```
 
+## What I Learnt
+-   **Lookup Tables (LUTs)**: Using an array to store data (the sequence) separates the *Logic* (the loop) from the *Data* (the pattern). This is powerful. If we want to change the visual pattern later, we only change the numbers in `{...}`, not the code!
+
 ## Visuals
-![Wiring Diagram](placeholder_image_link_or_description)
+![Simulation Output](./simulation_screenshot.png)
+[Click here to run the simulation on Wokwi](https://wokwi.com/projects/451230395192699905)

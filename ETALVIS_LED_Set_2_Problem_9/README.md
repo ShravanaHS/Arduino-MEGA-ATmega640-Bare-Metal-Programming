@@ -1,38 +1,26 @@
-# ETALVIS_LED_Set_2_Problem_9
+# Set 2 Problem 9: Reverse Upper Nibble Blink (Port F)
 
-## Objective
-connect 8 leds to port f and blink them form7 to 4
+## Problem Statement
+Connect 8 LEDs to **Port F**.
+Blink the upper LEDs (7, 6, 5, 4) in **Reverse Order**.
 
-## Bare Metal Logic
-This code configures **Port F** (Registers `DDRF`, `PORTF`) to drive LEDs 4-7.
-- **Header**: `#include <stdint.h>`
-- **Registers**:
-  - `DDRF (0x30)`: Data Direction Register for Port F. Bits 4-7 are set to 1.
-  - `PORTF (0x31)`: Data Register for Port F.
-  - `TCNT1`, `TCCR1A`, `TCCR1B`: Timer1 registers used for the 1-second delay.
-- **Sequence**:
-  - The loop iterates in reverse from 7 down to 4.
-  - It turns ON one LED at a time (`PORTF = (1 << i)`), waits 1 second, then turns it OFF, and waits another second.
+## Simple Explanation
+This is the same as Problem 8, but backwards.
+Start at the highest light (7) and count down to the middle (4).
 
-## Wokwi Link
-[Problem 9 Simulation](https://wokwi.com/projects/451214725256879105)
+## Hardware Setup
+-   **Port F**: Address `0x31`.
 
-## Code
+## Code Analysis
+
 ```c
-//connect 8 leds to port f and blink them form7 to 4
-
 #include <stdint.h>
-
 #define DDRF  (*(volatile uint8_t*)0x30)
 #define PORTF (*(volatile uint8_t*)0x31)
 
 void delay1sec(void){
-    TCNT1  = 0;
-    TCCR1A = 0x00;
-    TCCR1B = 0x05;          
-
+    TCNT1  = 0; TCCR1A = 0x00; TCCR1B = 0x05;          
     while (TCNT1 < 15625);
-
     TCCR1B = 0x00;          
 }
 
@@ -41,6 +29,9 @@ void setup() {
 }
 
 void loop() {
+    // Reverse Loop
+    // Start at 7. Stop when less than 4. Decrement (i--)
+    // Note: 'i' is signed (int8_t) to safely handle subtraction, though strictly 4 is > 0 so unsigned would work too.
     for (int8_t i = 7; i >= 4; i--) {
         PORTF = (1 << i);   
         delay1sec();
@@ -50,5 +41,10 @@ void loop() {
 }
 ```
 
+## What I Learnt
+-   **Reverse Iteration**: Using `i--` implies counting down.
+-   **Loop Boundaries**: Setting the condition `i >= 4` ensures we stop exactly after the 4th LED, not processing 3, 2, 1, 0.
+
 ## Visuals
-![Wiring Diagram](placeholder_image_link_or_description)
+![Simulation Output](./simulation_screenshot.png)
+[Click here to run the simulation on Wokwi](https://wokwi.com/projects/451214725256879105)

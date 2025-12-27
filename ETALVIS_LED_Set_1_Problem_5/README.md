@@ -1,31 +1,34 @@
-# ETALVIS_LED_Set_1_Problem_5
+# Set 1 Problem 5: Lower Nibble Blink (Port A)
 
-## Objective
-Connect four LEDs to port A bit 0 to bit 3. Glow LSB 4 LEDs only (bit 0 to bit 3)
+## Problem Statement
+Connect four LEDs to the lower half of **Port A** (Bits 0, 1, 2, 3).
+Blink all four of them together.
 
-## Bare Metal Logic
-- **Register Addresses**:
-  - `DDRA` (Data Direction Register for Port A) is accessed at address `0x21`.
-  - `PORTA` (Data Register for Port A) is accessed at address `0x22`.
-- **Volatile Pointers**:
-  - Code uses preprocessor macros: `#define addr (*(volatile uint8_t*)0x21)`.
-- **Bitwise Operations**:
-  - `(1<<0) | (1<<1) | (1<<2) | (1<<3)` targets the lower 4 bits (nibble).
-  - Used to set direction and toggle states.
+## Simple Explanation
+A "Byte" (8 bits) can be split into two halves called "Nibbles" (4 bits each).
+-   **Lower Nibble**: Bits 0, 1, 2, 3 (The right side).
+-   **Upper Nibble**: Bits 4, 5, 6, 7 (The left side).
+This problem lights up the entire Lower Nibble. Pattern: `00001111`.
 
-## Circuit Simulation
-[Link to Wokwi Simulation](https://wokwi.com/projects/450287693884152833)
+## Hardware Setup
+-   **Port A**: Address `0x22`.
+-   **Registers**:
+    -   `addr` (`0x21`): DDRA.
+    -   `aport` (`0x22`): PORTA.
 
-## Code
+## Code Analysis
+
 ```c
-// Connect four LEDs to port A bit 0 to bit 3. Glow LSB 4 LEDs only (bit 0 to bit 3)
 #include <stdint.h>
-#define aport (*(volatile uint8_t*)0x22)
-#define addr (*(volatile uint8_t*)0x21)
-void setup() {
-  // put your setup code here, to run once:
-  addr |= (1<<0) |(1<<1) | (1<<2) | (1<<3);
 
+#define aport (*(volatile uint8_t*)0x22) // Port A Data
+#define addr (*(volatile uint8_t*)0x21)  // Port A Direction
+
+void setup() {
+  // Set bits 0, 1, 2, 3 as output.
+  // Combines (1<<0) through (1<<3).
+  // Resulting Binary: 00001111 (Hex 0x0F).
+  addr |= (1<<0) | (1<<1) | (1<<2) | (1<<3);
 }
 
 void delayy(void){
@@ -34,14 +37,21 @@ void delayy(void){
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
-  aport |= (1<<0) |(1<<1) | (1<<2) | (1<<3);
+  // Turn ON Lower Nibble
+  aport |= (1<<0) | (1<<1) | (1<<2) | (1<<3);
   delayy();
 
+  // Turn OFF Lower Nibble
   aport &= ~((1<<0) | (1<<1) | (1<<2) | (1<<3));
   delayy();
 }
 ```
 
-## Visual
-![Simulation Output](./output.png)
+## What I Learnt
+-   **Nibbles**: The concept of splitting a byte into 4-bit chunks.
+-   **Register Addresses**: Port A starts at `0x21`/`0x22`, which is standard for ATmega2560.
+-   **Verbose Bitmasks**: While `0x0F` is shorter, writing `(1<<0)|...|(1<<3)` makes it graphically clear which specific pins are being targeted.
+
+## Visuals
+![Simulation Output](./simulation_screenshot.png)
+[Click here to run the simulation on Wokwi](https://wokwi.com/projects/450287693884152833)

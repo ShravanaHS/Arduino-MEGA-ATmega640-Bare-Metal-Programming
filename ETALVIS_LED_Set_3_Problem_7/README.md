@@ -1,43 +1,36 @@
-# ETALVIS_LED_Set_3_Problem_7
+# Set 3 Problem 7: 3-Bit Groups (Port A)
 
-## Objective
-Glow LEDs in the following groups: (0,1,2), then (5,6,7), then (3,4).
+## Problem Statement
+Connect 8 LEDs to **Port A**.
+Flash groups of LEDs in this order:
+1.  Bottom Three (0, 1, 2).
+2.  Top Three (5, 6, 7).
+3.  Middle Two (3, 4).
 
-## Bare Metal Logic
-This code configures **Port A** (Registers `DDRA`, `PORTA`) to drive 8 LEDs.
-- **Header**: `#include <stdint.h>`
-- **Registers**:
-  - `DDRA (0x21)`: Data Direction Register for Port A. Set to `0xFF` to configure all pins as outputs.
-  - `PORTA (0x22)`: Data Register for Port A.
-- **Operation**:
-  - Uses `pattern[3] = {0x07, 0xE0, 0x18}`.
-    - `0x07`: bits 0, 1, 2.
-    - `0xE0`: bits 5, 6, 7.
-    - `0x18`: bits 3, 4.
-  - The loop iterates from `i = 0` to `2`.
-  - Turns on LEDs based on the pattern, waits, turns them off, and waits again.
+## Simple Explanation
+We are lighting up chunks of the LED strip.
+-   Chunk A: `00000111` (0x07)
+-   Chunk B: `11100000` (0xE0)
+-   Chunk C: `00011000` (0x18)
 
-## Wokwi Link
-[Problem 7 Simulation](https://wokwi.com/projects/451233275591356417)
+## Hardware Setup
+-   **Port A**: Address `0x22`.
 
-## Code
+## Code Analysis
+
 ```c
-//glow the led in the following pattern 0,1,2  5,6,7  3,4
 #include <stdint.h>
-
 #define DDRA  (*(volatile uint8_t*)0x21)
 #define PORTA (*(volatile uint8_t*)0x22)
 
 uint8_t pattern[3] = {
-    0x07,   // 0,1,2
-    0xE0,   // 5,6,7
-    0x18    // 3,4
+    0x07,   // Binary: 00000111 (LEDs 0,1,2)
+    0xE0,   // Binary: 11100000 (LEDs 5,6,7)
+    0x18    // Binary: 00011000 (LEDs 3,4)
 };
 
 void delay1sec(void){
-    TCNT1  = 0;
-    TCCR1A = 0x00;
-    TCCR1B = 0x05;
+    TCNT1  = 0; TCCR1A = 0x00; TCCR1B = 0x05;
     while (TCNT1 < 15625);
     TCCR1B = 0x00;
 }
@@ -47,6 +40,7 @@ void setup() {
 }
 
 void loop() {
+    // Cycle through the 3 patterns defined above
     for (uint8_t i = 0; i < 3; i++) {
         PORTA = pattern[i];
         delay1sec();
@@ -56,5 +50,9 @@ void loop() {
 }
 ```
 
+## What I Learnt
+-   **Irregular Groups**: Logic doesn't always have to be mathematical (like "Even numbers"). With Hex Patterns, we can control absolutely any random grouping of LEDs we want.
+
 ## Visuals
-![Wiring Diagram](placeholder_image_link_or_description)
+![Simulation Output](./simulation_screenshot.png)
+[Click here to run the simulation on Wokwi](https://wokwi.com/projects/451233275591356417)

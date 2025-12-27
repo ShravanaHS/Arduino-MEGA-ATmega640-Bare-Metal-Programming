@@ -1,45 +1,38 @@
-# ETALVIS_LED_Set_2_Problem_8
+# Set 2 Problem 8: Upper Nibble Blink (Port F)
 
-## Objective
-connect 8 leds to port F blink 4-7 leds one by one
+## Problem Statement
+Connect 8 LEDs to **Port F**.
+Blink the *last* four LEDs (4 to 7) one by one.
+Bits 0-3 should be ignored.
 
-## Bare Metal Logic
-This code configures **Port F** (Registers `DDRF`, `PORTF`) to drive LEDs 4-7.
-- **Header**: `#include <stdint.h>`
-- **Registers**:
-  - `DDRF (0x30)`: Data Direction Register for Port F. Bits 4-7 are set to 1.
-  - `PORTF (0x31)`: Data Register for Port F.
-  - `TCNT1`, `TCCR1A`, `TCCR1B`: Timer1 registers used for the 1-second delay.
-- **Sequence**:
-  - The loop iterates from 4 to 7.
-  - It turns ON one LED at a time (`PORTF = (1 << i)`), waits 1 second, then turns it OFF, and waits another second.
+## Simple Explanation
+We are scanning through the "Upper Half" of the port.
+Start at Light 4 -> Light 5 -> Light 6 -> Light 7.
 
-## Wokwi Link
-[Problem 8 Simulation](https://wokwi.com/projects/451214702764919809)
+## Hardware Setup
+-   **Port F**: Address `0x31`.
+-   **Bits**: 4, 5, 6, 7.
 
-## Code
+## Code Analysis
+
 ```c
-//connect 8 leds to port F blink 4-7 leds one by one
-
 #include <stdint.h>
-
 #define DDRF  (*(volatile uint8_t*)0x30)
 #define PORTF (*(volatile uint8_t*)0x31)
 
 void delay1sec(void){
-    TCNT1  = 0;
-    TCCR1A = 0x00;
-    TCCR1B = 0x05;          
+    TCNT1  = 0; TCCR1A = 0x00; TCCR1B = 0x05;          
     while (TCNT1 < 15625);
-
     TCCR1B = 0x00;          
 }
 
 void setup() {
+    // Set Bits 4,5,6,7 to Output
     DDRF |= (1<<4) | (1<<5) | (1<<6) | (1<<7);   
 }
 
 void loop() {
+    // Start loop at 4, go up to 7
     for (uint8_t i = 4; i < 8; i++) {
         PORTF = (1 << i);   
         delay1sec();
@@ -49,5 +42,9 @@ void loop() {
 }
 ```
 
+## What I Learnt
+-   **Offset Loops**: Starting a loop at `i = 4` instead of 0 allow us to target the Upper Nibble directly without doing math like `1 << (i + 4)`.
+
 ## Visuals
-![Wiring Diagram](placeholder_image_link_or_description)
+![Simulation Output](./simulation_screenshot.png)
+[Click here to run the simulation on Wokwi](https://wokwi.com/projects/451214702764919809)

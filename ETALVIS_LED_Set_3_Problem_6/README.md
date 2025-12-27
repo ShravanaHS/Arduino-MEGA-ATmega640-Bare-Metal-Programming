@@ -1,40 +1,33 @@
-# ETALVIS_LED_Set_3_Problem_6
+# Set 3 Problem 6: Custom Pattern Reverse (Port A)
 
-## Objective
-Glow the LEDs in the following order of pairs: (4,5), (2,3), (6,7), (0,1).
+## Problem Statement
+Connect 8 LEDs to **Port A**.
+Flash them in the specified group order:
+1.  Pairs (4,5).
+2.  Pairs (2,3).
+3.  Pairs (6,7).
+4.  Pairs (0,1).
 
-## Bare Metal Logic
-This code configures **Port A** (Registers `DDRA`, `PORTA`) to drive 8 LEDs.
-- **Header**: `#include <stdint.h>`
-- **Registers**:
-  - `DDRA (0x21)`: Data Direction Register for Port A. Set to `0xFF` to configure all pins as outputs.
-  - `PORTA (0x22)`: Data Register for Port A.
-- **Operation**:
-  - Uses the same pattern array as Problem 5: `pattern[4] = {0x03, 0xC0, 0x0C, 0x30}`.
-    - `0x03`: bits 0 & 1.
-    - `0xC0`: bits 6 & 7.
-    - `0x0C`: bits 2 & 3.
-    - `0x30`: bits 4 & 5.
-  - The loop iterates backwards from `i = 3` to `0`.
-  - Accesses `pattern[i]` in reverse order:
-    1. `pattern[3]` (0x30 -> 45)
-    2. `pattern[2]` (0x0C -> 23)
-    3. `pattern[1]` (0xC0 -> 67)
-    4. `pattern[0]` (0x03 -> 01)
-  - Waits 1 second between patterns.
+## Simple Explanation
+We are playing a sequence of 2-LED combinations stored in a predefined list (Array).
+We play the list in **Reverse** order (Index 3 down to 0).
 
-## Wokwi Link
-[Problem 6 Simulation](https://wokwi.com/projects/451230437858215937)
+## Hardware Setup
+-   **Port A**: Address `0x22`.
 
-## Code
+## Code Analysis
+
 ```c
-//glow the led in this pattern 45, 23, 67, 01
-
 #include <stdint.h>
-
 #define DDRA  (*(volatile uint8_t*)0x21)
 #define PORTA (*(volatile uint8_t*)0x22)
 
+/* Pattern Map:
+ * Index 0 (0x03): Bits 0,1
+ * Index 1 (0xC0): Bits 6,7
+ * Index 2 (0x0C): Bits 2,3
+ * Index 3 (0x30): Bits 4,5
+ */
 uint8_t pattern[4] = {
   0x03,   // 01
   0xC0,   // 67
@@ -43,9 +36,7 @@ uint8_t pattern[4] = {
 };
 
 void delay1sec(void){
-  TCNT1  = 0;
-  TCCR1A = 0x00;
-  TCCR1B = 0x05;
+  TCNT1  = 0; TCCR1A = 0x00; TCCR1B = 0x05;
   while (TCNT1 < 15625);
   TCCR1B = 0x00;
 }
@@ -55,7 +46,9 @@ void setup() {
 }
 
 void loop() {
-  for (uint8_t i = 3; i >= 0; i--) {
+  // Start at Index 3 (The last element: 0x30 aka Pair 4,5)
+  // Count down to Index 0 (The first element: 0x03 aka Pair 0,1)
+  for (int8_t i = 3; i >= 0; i--) {
     PORTA = pattern[i];
     delay1sec();
     PORTA = 0x00;
@@ -64,5 +57,9 @@ void loop() {
 }
 ```
 
+## What I Learnt
+-   **Reverse Array Traversal**: How to access data starting from the end of a list `pattern[3]` back to the start `pattern[0]`.
+
 ## Visuals
-![Wiring Diagram](placeholder_image_link_or_description)
+![Simulation Output](./simulation_screenshot.png)
+[Click here to run the simulation on Wokwi](https://wokwi.com/projects/451230437858215937)

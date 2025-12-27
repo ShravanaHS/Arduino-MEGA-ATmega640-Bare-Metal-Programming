@@ -1,39 +1,29 @@
-# ETALVIS_LED_Set_3_Problem_3
+# Set 3 Problem 3: Knight Rider Full (Forward & Reverse)
 
-## Objective
-Connect 8 LEDs to Port A. Glow them 0-7 sequentially with delay, then reverse 7-0 with delay.
+## Problem Statement
+Connect 8 LEDs to **Port A**.
+1.  Scan Forward: Light 0 to 7 one by one.
+2.  Scan Backward: Light 7 to 0 one by one.
+This creates a back-and-forth animation.
 
-## Bare Metal Logic
-This code configures **Port A** (Registers `DDRA`, `PORTA`) to drive 8 LEDs.
-- **Header**: `#include <stdint.h>`
-- **Registers**:
-  - `DDRA (0x21)`: Data Direction Register for Port A. Set to `0xFF` to configure all pins as outputs.
-  - `PORTA (0x22)`: Data Register for Port A.
-- **Operation**:
-  - **Forward Loop**: Iterates `i` from 0 to 7. Turns on LED at bit `i`.
-  - **Reverse Loop**: Iterates `i` from 7 down to 0. Turns on LED at bit `i`.
-  - Uses `PORTA = (1 << i)` which ensures only one LED is on at a time.
-  - Custom `delay1sec` is used between changes.
+## Simple Explanation
+This is the full "Scanner" effect. The light bounces off the walls.
+-   0 -> 1 ... -> 6 -> 7 (Bounce)
+-   7 -> 6 ... -> 1 -> 0 (Bounce)
 
-## Wokwi Link
-[Problem 3 Simulation](https://wokwi.com/projects/451230371206518785)
+## Hardware Setup
+-   **Port A**: Address `0x22`.
 
-## Code
+## Code Analysis
+
 ```c
-//connect 8 LEDs to portA glow 0-7 with delay and reverse it like 7-0 with delay
-//same hardware as before ass 1 and 2
 #include <stdint.h>
-
 #define DDRA  (*(volatile uint8_t*)0x21)
 #define PORTA (*(volatile uint8_t*)0x22)
 
 void delay1sec(void){
-    TCNT1  = 0;
-    TCCR1A = 0x00;
-    TCCR1B = 0x05;        
-
+    TCNT1  = 0; TCCR1A = 0x00; TCCR1B = 0x05;        
     while (TCNT1 < 15625);
-
     TCCR1B = 0x00;        
 }
 
@@ -42,13 +32,15 @@ void setup() {
 }
 
 void loop() {
-
-    
+    // 1. Forward Trace (0 to 7)
     for (uint8_t i = 0; i < 8; i++) {
         PORTA = (1 << i);
         delay1sec();
     }
 
+    // 2. Backward Trace (7 to 0)
+    // Note: This will light 7 twice in a row (end of Forward, start of Backward).
+    // To make it smooth, we usually start this loop at 6. But let's follow the code given.
     for (int8_t i = 7; i >= 0; i--) {
         PORTA = (1 << i);
         delay1sec();
@@ -56,5 +48,10 @@ void loop() {
 }
 ```
 
+## What I Learnt
+-   **Two-Phase Animation**: Combining two simple loops (Forward and Reverse) to create a complex behavior.
+-   **Signed Integers**: Crucial for the reverse loop `i >= 0`. If `i` was `uint8_t`, `0 - 1` would be `255`, and the loop `255 >= 0` is true, causing a crash/infinite loop.
+
 ## Visuals
-![Wiring Diagram](placeholder_image_link_or_description)
+![Simulation Output](./set3_prob3_screenshot_1766806590750.webp)
+[Click here to run the simulation on Wokwi](https://wokwi.com/projects/451230371206518785)

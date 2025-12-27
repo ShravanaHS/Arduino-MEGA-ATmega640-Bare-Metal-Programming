@@ -1,24 +1,23 @@
-# ETALVIS_LED_Set_1_Problem_9
+# Set 1 Problem 9: Even LED Blink (Port L)
 
-## Objective
-Connect Eight LEDs to port L bit 0 to bit 7. Glow all EVEN position LEDs
+## Problem Statement
+Connect eight LEDs to **Port L**.
+Blink only the **Even** position LEDs (Bits 0, 2, 4, 6).
 
-## Bare Metal Logic
-- **Register Addresses**:
-  - `DDRL` (Data Direction Register for Port L) is accessed at address `0x10A`.
-  - `PORTL` (Data Register for Port L) is accessed at address `0x10B`.
-- **Volatile Pointers**:
-  - Used `volatile uint8_t*` pointers mapped to these addresses.
-- **Bitwise/Hex Operations**:
-  - `0x55` (Binary `01010101`) corresponds to LEDs at bit positions 0, 2, 4, 6 (Even positions).
+## Simple Explanation
+We want to light up every alternate socket starting from the first one.
+-   Pattern: 1 (On), 0 (Off), 1 (On), 0 (Off), 1 (On), 0 (Off), 1 (On), 0 (Off).
+-   Binary: `01010101` (Note: bit 0 is at the right end).
 
-## Circuit Simulation
-[Link to Wokwi Simulation](https://wokwi.com/projects/450288081398026241)
+## Hardware Setup
+-   **Port L**: Address `0x10B`.
+-   **Registers**:
+    -   `lddr` (`0x10A`): Direction.
+    -   `lport` (`0x10B`): Data.
 
-## Code
+## Code Analysis
+
 ```c
-//Connect Eight LEDs to port L bit 0 to bit 7. Glow all EVEN position LEDs
-
 #include <stdint.h>
 
 #define lport (*(volatile uint8_t*)0x10B)
@@ -30,16 +29,28 @@ void delayy(void){
 }
 
 void setup() {
+  // Set all pins of Port L to Output mode.
+  // Even though we only use the Even pins, setting 0xFF makes all 8 pins outputs.
   lddr = 0xFF;
 }
 
 void loop() {
+  // Turn ON Even LEDs
+  // 0x55 is the Hex code for 01010101.
+  // This lights up bit 0, 2, 4, 6.
   lport = 0x55;
   delayy();
+
+  // Turn OFF proper
   lport = 0x00;
   delayy();
 }
 ```
 
-## Visual
-![Simulation Output](./output.png)
+## What I Learnt
+-   **Magic Number `0x55`**: Memorizing that `0x55` (`01010101`) is the pattern for "Alternating bits starting with 1 at LSB".
+-   **Efficient Port Writing**: We can set the complex pattern in a single instruction (`lport = 0x55`) rather than setting 4 different pins individually.
+
+## Visuals
+![Simulation Output](./simulation_screenshot.png)
+[Click here to run the simulation on Wokwi](https://wokwi.com/projects/450288081398026241)
