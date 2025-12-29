@@ -1,28 +1,23 @@
 # 🚀 Arduino MEGA (ATmega640/2560) Bare Metal Programming
 
-Welcome to the **Bare Metal Programming** repository! This project focuses on direct register manipulation using the **ATmega640/2560** microcontroller, simulated via [Wokwi](https://wokwi.com).
+Welcome to the **Bare Metal Programming** repository! This project serves as a comprehensive guide to direct register manipulation using the **ATmega640/2560** microcontroller. All simulations are designed to run on [Wokwi](https://wokwi.com).
 
-The repository is organized by topic (LEDs, Seven Segment, etc.) and further divided into problem sets.
+## 📂 Repository Structure
 
----
+The assignments and projects are categorized by interface type:
 
-## 📌 Table of Contents
-
-- [1. LED Assignments](#1-led-assignments)
-  - [Set 1](#set-1)
-  - [Set 2](#set-2)
-  - [Set 3](#set-3)
-  - [Set 4](#set-4)
-- [2. Seven Segment Display](#2-seven-segment-display)
-- [3. Dot Matrix Display](#3-dot-matrix-display)
-- [4. Keypad Interfaces](#4-keypad-interfaces)
-- [My Projects](#my-projects)
+- **1. LED Assignments**: Fundamental GPIO operations using LEDs.
+- **2. Seven Segment Display**: Interfacing with 7-segment displays.
+- **3. Dot Matrix Display**: Controlling LED matrices.
+- **4. Keypad Interfaces**: Reading input from keypads.
+- **My Projects**: Custom personal projects.
 
 ---
 
-## 1. LED Assignments
+## 1. 💡 LED Assignments
 
-### Set 1
+<details>
+<summary><strong>Set 1: Basic LED Control</strong></summary>
 
 | # | Problem | Objective | Registers Used | Simulation |
 |:-:| :--- | :--- | :--- | :---: |
@@ -37,7 +32,10 @@ The repository is organized by topic (LEDs, Seven Segment, etc.) and further div
 | 9 | [**Problem 9**](./1_LED_Assignments/Set_1/Problem_9/) | Connect 8 LEDs to **Port L (Even)** | `DDRL`, `PORTL` | [**View**](https://wokwi.com/projects/450288081398026241) |
 | 10 | [**Problem 10**](./1_LED_Assignments/Set_1/Problem_10/) | Connect 8 LEDs to **Port E (Specific)** | `DDRE`, `PORTE` | [**View**](https://wokwi.com/projects/450288106353088513) |
 
-### Set 2
+</details>
+
+<details>
+<summary><strong>Set 2: Sequence & Control</strong></summary>
 
 | # | Problem | Objective | Registers Used | Simulation |
 |:-:| :--- | :--- | :--- | :---: |
@@ -52,7 +50,10 @@ The repository is organized by topic (LEDs, Seven Segment, etc.) and further div
 | 9 | [**Problem 9**](./1_LED_Assignments/Set_2/Problem_9/) | Connect 8 LEDs to **Port F (7-4 Reverse)** | `DDRF`, `PORTF` | [**View**](https://wokwi.com/projects/451214725256879105) |
 | 10 | [**Problem 10**](./1_LED_Assignments/Set_2/Problem_10/) | Connect 8 LEDs to **Port F (Code 7-4 / Obj 3-0)** | `DDRF`, `PORTF` | [**View**](https://wokwi.com/projects/451214741914558465) |
 
-### Set 3
+</details>
+
+<details>
+<summary><strong>Set 3: Pattern Logic</strong></summary>
 
 | # | Problem | Objective | Registers Used | Simulation |
 |:-:| :--- | :--- | :--- | :---: |
@@ -67,47 +68,66 @@ The repository is organized by topic (LEDs, Seven Segment, etc.) and further div
 | 9 | [**Problem 9**](./1_LED_Assignments/Set_3/Problem_9/) | Connect 8 LEDs to **Port A (Accumulate 0-7)** | `DDRA`, `PORTA` | [**View**](https://wokwi.com/projects/451233426803376129) |
 | 10 | [**Problem 10**](./1_LED_Assignments/Set_3/Problem_10/) | Connect 8 LEDs to **Port A (Accumulate 7-0)** | `DDRA`, `PORTA` | [**View**](https://wokwi.com/projects/451233531907399681) |
 
-### Set 4
+</details>
+
+<details>
+<summary><strong>Set 4: Advanced LED Operations</strong></summary>
 
 _(Coming Soon)_
 
+</details>
+
 ---
 
-## 2. Seven Segment Display
+## 2. 🔢 Seven Segment Display
 
-_(Assignments coming soon)_
+<details>
+<summary><strong>Assignments</strong></summary>
+
+_(Coming Soon)_
 
 | # | Problem | Objective | Registers Used | Simulation |
 |:-:| :--- | :--- | :--- | :---: |
 | - | - | - | - | - |
 
+</details>
+
 ---
 
-## 3. Dot Matrix Display
+## 3. 📉 Dot Matrix Display
 
-_(Assignments coming soon)_
+<details>
+<summary><strong>Assignments</strong></summary>
+
+_(Coming Soon)_
 
 | # | Problem | Objective | Registers Used | Simulation |
 |:-:| :--- | :--- | :--- | :---: |
 | - | - | - | - | - |
 
+</details>
+
 ---
 
-## 4. Keypad Interfaces
+## 4. 🎹 Keypad Interfaces
 
-_(Assignments coming soon)_
+<details>
+<summary><strong>Assignments</strong></summary>
+
+_(Coming Soon)_
 
 | # | Problem | Objective | Registers Used | Simulation |
 |:-:| :--- | :--- | :--- | :---: |
 | - | - | - | - | - |
 
+</details>
+
 ---
 
-## My Projects
+## 🛠️ My Projects
 
 | Project Name | Description | Link |
 | :--- | :--- | :---: |
 | - | - | - |
 
 ---
-
