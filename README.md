@@ -73,7 +73,18 @@ The assignments and projects are categorized by interface type:
 <details>
 <summary><strong>Set 4: Advanced LED Operations</strong></summary>
 
-_(Coming Soon)_
+| # | Problem | Objective | Registers Used | Simulation |
+|:-:| :--- | :--- | :--- | :---: |
+| 1 | [**Problem 1**](./1_LED_Assignments/Set_4/Problem_1/) | Dual Port ON | `DDRA`, `DDRB` | [**View**](https://wokwi.com/projects/451305981969614849) |
+| 2 | [**Problem 2**](./1_LED_Assignments/Set_4/Problem_2/) | Alternating Rows | `DDRA`, `DDRB` | [**View**](https://wokwi.com/projects/451306004842207233) |
+| 3 | [**Problem 3**](./1_LED_Assignments/Set_4/Problem_3/) | Sequential Row Blink | `DDRA`, `DDRB` | [**View**](https://wokwi.com/projects/451306020763787265) |
+| 4 | [**Problem 4**](./1_LED_Assignments/Set_4/Problem_4/) | Parallel Sequential Mirror | `DDRA`, `DDRB` | [**View**](https://wokwi.com/projects/451306062951152641) |
+| 5 | [**Problem 5**](./1_LED_Assignments/Set_4/Problem_5/) | Row-by-Row Sequence | `DDRA`, `DDRB` | [**View**](https://wokwi.com/projects/451306040146719745) |
+| 6 | [**Problem 6**](./1_LED_Assignments/Set_4/Problem_6/) | Parallel Sequential Mirror | `DDRA`, `DDRB` | [**View**](https://wokwi.com/projects/451306091675844609) |
+| 7 | [**Problem 7**](./1_LED_Assignments/Set_4/Problem_7/) | 4 by 4 Blink (See README) | `DDRA`, `DDRB` | [**View**](https://wokwi.com/projects/451306146569847809) |
+| 8 | [**Problem 8**](./1_LED_Assignments/Set_4/Problem_8/) | Alternate Pattern Blink | `DDRA`, `DDRB` | [**View**](https://wokwi.com/projects/451306164679805953) |
+| 9 | [**Problem 9**](./1_LED_Assignments/Set_4/Problem_9/) | Pair Blink | `DDRA`, `DDRB` | [**View**](https://wokwi.com/projects/451306186028815361) |
+| 10 | [**Problem 10**](./1_LED_Assignments/Set_4/Problem_10/) | Reverse Pair Blink | `DDRA`, `DDRB` | [**View**](https://wokwi.com/projects/451306204462786561) |
 
 </details>
 

@@ -1,63 +1,64 @@
 # Set 1 Problem 1: Single LED Blink (Port J)
 
 ## Problem Statement
-We want to connect a single LED to the Arduino Mega and make it blink.
-Specifically, we will connect it to **Port J** at **Bit 0** (Pin 14 on the board).
-1.  Turn the LED ON.
-2.  Wait for a while.
-3.  Turn the LED OFF.
-4.  Repeat.
+Connect a single LED to **Port J** at **Bit 0** (Pin 14 on the board) and make it blink ON and OFF.
 
 ## Simple Explanation
-Think of a "Port" like a power strip with 8 sockets, numbered 0 to 7. We are plugging a lamp (LED) into socket #0.
-To turn it on, we need to flip the switch for socket #0 to "ON" (send a `1`).
-To turn it off, we flip the switch to "OFF" (send a `0`).
+Think of the microcontroller ports as banks of light switches. **Port J** is one such bank with 8 switches (numbered 0 to 7).
+-   To turn on the light at position 0, we need to flip switch #0 to "ON".
+-   Computers use 0s and 1s. Sending a `1` means ON (5V), and `0` means OFF (0V).
+-   We will turn the LED ON, wait for a second, turn it OFF, and wait again.
 
 ## Hardware Setup
--   **Port J**: A specific group of pins on the microcontroller.
--   **Bit 0**: The first pin in that group.
+-   **Port Used**: Port J
+-   **Pin**: Bit 0 (Physical Pin 15 on Mega, Digital Pin 14 in Arduino mapped) - *Note: On pure ATmega2560, Port J0 is Pin 63.*
 -   **Registers**:
-    -   `DDRJ` (`0x104`): Controls direction (Input/Output). We need Output to power the LED.
-    -   `PORTJ` (`0x105`): Controls the signal (High/Low).
+    -   `DDRJ` (Data Direction Register J): Sets pin direction (Input vs Output). Address `0x104`.
+    -   `PORTJ` (Port J Data Register): Sets pin state (High vs Low). Address `0x105`.
 
 ## Code Analysis
 
 ```c
-// Problem: Connect a LED to port J bit 0. Glow LSB LED only (bit 0)
+#include <stdint.h>
+
+// --- Register Definitions ---
+// We define "pointers" to the specific memory addresses for Port J.
+// 'volatile' ensures the compiler always checks the real hardware address.
+#define PORTJ (*(volatile uint8_t*)0x105) // Address of PORTJ
+#define DDRJ  (*(volatile uint8_t*)0x104) // Address of DDRJ
 
 void setup() {
-  /* 
-   * STEP 1: Configure the Direction
-   * We need to tell the microcontroller that Port J will be used for OUTPUT (sending power out).
-   * The address of the Data Direction Register for Port J (DDRJ) is 0x104.
-   */
-  volatile char *dirj;  // Create a pointer variable
-  dirj = 0x104;         // Point it to address 0x104 (DDRJ)
-  *dirj = 0xFF;         // Write 0xFF (11111111) to set ALL pins on Port J as Output.
+  // CONFIGURATION
+  // We set ALL pins of Port J to OUTPUT mode.
+  // 0xFF in Hex is 11111111 in Binary.
+  DDRJ = 0xFF;   
+}
+
+// A simple delay function to create a visible pause
+void delay_ms(void){
+  volatile uint32_t i;
+  for(i = 0; i < 400000; i++); // Empty loop for delay
 }
 
 void loop() {
-  /* 
-   * STEP 2: Control the Light
-   * The address of the Data Register for Port J (PORTJ) is 0x105.
-   */
-  volatile char *portj; // Create a pointer
-  portj = 0x105;        // Point it to address 0x105 (PORTJ)
-
-  // Turn ON Bit 0
+  // 1. Turn LED ON
   // 0x01 in Hex is 00000001 in Binary.
-  // This sends HIGH voltage to bit 0, turning the LED on.
-  *portj = 0x01;
-  
-  // Note: This code lacks a delay() and a turn-off step, so the LED will just stay on forever!
-  // In a proper blink program, we would add a delay and then set it to 0x00.
+  // This sets Bit 0 High, turning on the connected LED.
+  PORTJ = 0x01;
+  delay_ms();
+
+  // 2. Turn LED OFF
+  // 0x00 in Hex is 00000000 in Binary.
+  // This turns off all pins on Port J.
+  PORTJ = 0x00;
+  delay_ms();
 }
 ```
 
 ## What I Learnt
--   **Pointers**: Accessing hardware registers directly using pointers (e.g., `*dirj = 0xFF`).
--   **Memory Addresses**: Every pin on the Arduino maps to a specific number address in memory (like `0x104`).
--   **Volatile**: A keyword ensuring the computer doesn't "forget" to check these real-world addresses.
+-   **Register Macros**: Using `#define PORTJ ...` makes code much cleaner than manually typing addresses like `*(volatile char*)0x105` inside functions.
+-   **Hexadecimal Basics**: `0x01` represents binary `00000001`, targeting the first bit (Bit 0).
+-   **Blinking Logic**: A loop of ON -> Wait -> OFF -> Wait is the fundamental "Hello World" of electronics.
 
 ## Visuals
 ![Simulation Output](./simulation_screenshot.png)

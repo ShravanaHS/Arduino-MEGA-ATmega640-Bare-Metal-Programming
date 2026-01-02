@@ -10,15 +10,18 @@ We are using the entire "power strip". All 8 sockets are active.
 -   Turn EVERYTHING OFF (`00000000`).
 
 ## Hardware Setup
--   **Port F**: Address `0x31`.
+-   **Port Used**: Port F
+-   **Pins**: Bits 0-7.
 -   **Registers**:
-    -   `DDRF` (`0x30`): Direction.
-    -   `PORTF` (`0x31`): Data.
+    -   `DDRF` (Data Direction Register F): Address `0x30`.
+    -   `PORTF` (Port F Data Register): Address `0x31`.
 
 ## Code Analysis
 
 ```c
-//Connect Eight LEDs to port F bit 0 to bit 7. Glow all 8 LEDs
+#include <stdint.h>
+
+// --- Register Definitions ---
 #define DDRF  (*(volatile uint8_t*)0x30)
 #define PORTF (*(volatile uint8_t*)0x31)
 
@@ -28,26 +31,28 @@ void setup() {
   DDRF |= 0xFF;
 }
 
-void delayy(void){
+void delay_ms(void){
   volatile uint32_t i;
-  for(i=0; i<1000000; i++);
+  for(i=0; i<400000; i++);
 }
 
 void loop() {
-  // Turn ON all LEDs
+  // 1. Turn ON all LEDs
   PORTF |= 0xFF;
-  delayy();
+  delay_ms();
 
-  // Turn OFF all LEDs
+  // 2. Turn OFF all LEDs
   // ~(0xFF) is 0x00 (00000000).
-  PORTF &= ~(0xFF);
-  delayy();
+  // This clears all bits on Port F.
+  PORTF &= ~0xFF;
+  delay_ms();
 }
 ```
 
 ## What I Learnt
--   **Hexadecimal `0xFF`**: The shortcut for "All bits ones". This is the most common pattern in digital logic for selecting "everything".
--   **Port Width**: Understanding that ports on the ATmega are 8-bits wide.
+-   **Hexadecimal `0xFF`**: The shortcut for "All bits ones". This is the standard way to manipulate a full byte.
+-   **Port F**: Often used for Analog Inputs on Arduino, but perfectly capable of Digital Output.
+-   **Efficiency**: Writing `PORTF = 0xFF` is faster and simpler than setting pins individualy.
 
 ## Visuals
 ![Simulation Output](./simulation_screenshot.png)

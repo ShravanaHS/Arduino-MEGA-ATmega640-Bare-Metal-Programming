@@ -1,55 +1,58 @@
 # Set 1 Problem 4: High Bit Blink (Port C)
 
 ## Problem Statement
-Connect two LEDs to **Port C** at the two highest positions: **Bit 7** and **Bit 6**.
+Connect two LEDs to **Port C** at the two highest positions: **Bit 7** and **Bit 6** (Pin 30 and 31).
 Blink them on and off.
 
 ## Simple Explanation
-We are using the last two sockets of the port.
+We are using the last two sockets of the port (the "High" side).
 -   Bit 7 (MSB): Worth 128.
 -   Bit 6: Worth 64.
--   Together: `11000000`.
+-   Together: `11000000` (Hex `0xC0`).
 
 ## Hardware Setup
--   **Port C**: Address `0x28`.
+-   **Port Used**: Port C
+-   **Pins**: Bit 7 and Bit 6.
 -   **Registers**:
-    -   `cddr` (`0x27`): Count Direction Register.
-    -   `cport` (`0x28`): Data Register.
+    -   `DDRC` (Data Direction Register C): Address `0x27`.
+    -   `PORTC` (Port C Data Register): Address `0x28`.
 
 ## Code Analysis
 
 ```c
 #include <stdint.h>
 
-#define cport (*(volatile uint8_t*)0x28)
-#define cddr  (*(volatile uint8_t*)0x27)
+// --- Register Definitions ---
+#define PORTC (*(volatile uint8_t*)0x28)
+#define DDRC  (*(volatile uint8_t*)0x27)
 
 void setup() {
   // Set Bit 6 and Bit 7 as Output.
   // (1<<6) | (1<<7) creates the mask 11000000.
-  cddr |= (1<<6) | (1<<7);
+  DDRC |= (1 << 6) | (1 << 7);
 }
 
-void delayy(void){
+void delay_ms(void){
   volatile uint32_t i;
-  for(i = 0; i < 100000; i++);
+  for(i = 0; i < 400000; i++);
 }
 
 void loop() {
-  // Turn ON Bit 6 and 7
-  cport |= (1<<6) | (1<<7);
-  delayy();
+  // 1. Turn ON Bit 6 and 7
+  PORTC |= (1 << 6) | (1 << 7);
+  delay_ms();
 
-  // Turn OFF Bit 6 and 7
+  // 2. Turn OFF Bit 6 and 7
   // We compute the mask (11000000), flip it (00111111), and AND it to clear the bits.
-  cport &= ~((1<<6) | (1<<7));
-  delayy();
+  PORTC &= ~((1 << 6) | (1 << 7));
+  delay_ms();
 }
 ```
 
 ## What I Learnt
--   **Grouping Bits**: Managing adjacent bits (6 and 7) is logically the same as managing disparate bits (0 and 6 from Problem 3).
--   **Masking**: The importance of parentheses `~((1<<6) | (1<<7))`—calculate the pattern first, *then* flip it.
+-   **Grouping Bits**: Managing adjacent bits (6 and 7) is logically the same as managing disparate bits.
+-   **Mask Definitions**: It is often helpful to define a mask, e.g., `#define MASK_HIGH_BITS ((1<<7)|(1<<6))`, to make the main code more readable.
+-   **Port C**: Commonly used for LCDs or simple IO on the Mega.
 
 ## Visuals
 ![Simulation Output](./simulation_screenshot.png)

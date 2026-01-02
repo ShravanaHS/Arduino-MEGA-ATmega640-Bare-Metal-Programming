@@ -1,29 +1,31 @@
 # Set 1 Problem 3: Two LED Blink (Port H)
 
 ## Problem Statement
-Connect two LEDs to **Port H**.
--   One LED at **Bit 6**.
--   One LED at **Bit 0**.
+Connect two LEDs to **Port H**:
+-   One LED at **Bit 6** (Pin 9).
+-   One LED at **Bit 0** (Pin 16 on Mega).
 Make them blink together (ON at the same time, OFF at the same time).
 
 ## Simple Explanation
-We are plugging two lamps into our power strip: one at start (Socket 0) and one near the end (Socket 6).
-We need to flip both switches simultaneously.
--   Binary Pattern: `01000001` (Bit 6 is 1, Bit 0 is 1).
+We are plugging two LEDs into our "power bank" (Port H) at different sockets (#6 and #0).
+-   We want to control them simultaneously.
+-   Binary Pattern: `01000001` (Hex `0x41`).
 
 ## Hardware Setup
--   **Port H**: Address `0x102`.
+-   **Port Used**: Port H
+-   **Pins**: Bit 6 and Bit 0.
 -   **Registers**:
-    -   `DDRH` (`0x101`): Direction.
-    -   `PORTH` (`0x102`): Output.
+    -   `DDRH` (Data Direction Register H): Address `0x101`.
+    -   `PORTH` (Port H Data Register): Address `0x102`.
 
 ## Code Analysis
 
 ```c
 #include <stdint.h>
 
-#define DDRH  (*(volatile uint8_t*)0x101)
+// --- Register Definitions ---
 #define PORTH (*(volatile uint8_t*)0x102)
+#define DDRH  (*(volatile uint8_t*)0x101)
 
 void setup() {
   // Configure BOTH pins as Outputs at once.
@@ -33,28 +35,30 @@ void setup() {
   DDRH |= (1 << 6) | (1 << 0);
 }
 
-void DELAY(void) {
+void delay_ms(void) {
   volatile uint32_t i;
-  for (i = 0; i < 1000000; i++);
+  for (i = 0; i < 400000; i++);
 }
 
 void loop() {
-  // TURN ON both LEDs
+  // 1. Turn ON both LEDs
+  // PORTH |= (1 << 6) | (1 << 0);
   PORTH |= (1 << 6) | (1 << 0);    
-  DELAY();
+  delay_ms();
 
-  // TURN OFF both LEDs
+  // 2. Turn OFF both LEDs
   // We use the same bitmask logic to clear them.
   // ~(1<<6) clears bit 6. ~(1<<0) clears bit 0.
   // Combining them clears both.
-  PORTH &= ~(1 << 6) & ~(1 << 0);  
-  DELAY();
+  PORTH &= ~((1 << 6) | (1 << 0));  
+  delay_ms();
 }
 ```
 
 ## What I Learnt
 -   **Combining Bitmasks**: How to manipulate multiple pins in a single line of code using `|` (OR).
 -   **Simultaneous Control**: Bare metal programming allows modifying multiple pins in partially disconnected positions (0 and 6) instantly in one clock cycle.
+-   **Operator Precedence**: Using parentheses `~((1<<6) | (1<<0))` ensures we create the full mask `01000001` first, then flip it to `10111110` to clear the bits.
 
 ## Visuals
 ![Simulation Output](./simulation_screenshot.png)
