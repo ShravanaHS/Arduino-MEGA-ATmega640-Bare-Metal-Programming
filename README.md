@@ -93,13 +93,32 @@ The assignments and projects are categorized by interface type:
 ## 2. 🔢 Seven Segment Display
 
 <details>
-<summary><strong>Assignments</strong></summary>
 
-_(Coming Soon)_
+<details>
+<summary><strong>Set 1: Basic Display</strong></summary>
 
 | # | Problem | Objective | Registers Used | Simulation |
 |:-:| :--- | :--- | :--- | :---: |
-| - | - | - | - | - |
+| 1 | [**Problem 1**](./2_Seven_Segment_Assignments/Set_1/Problem_1/) | Interface 7-Segment (Display 0-9) | `DDRA`, `PORTA` | [**View**](https://wokwi.com/projects/452036987984757761) |
+| 2 | [**Problem 2**](./2_Seven_Segment_Assignments/Set_1/Problem_2/) | Display '1' (Single Digit) | `DDRA`, `PORTA` | [**View**](https://wokwi.com/projects/452037010100276225) |
+
+</details>
+
+<details>
+<summary><strong>Set 2: Sequence & Patterns</strong></summary>
+
+| # | Problem | Objective | Registers Used | Simulation |
+|:-:| :--- | :--- | :--- | :---: |
+| 1 | [**Problem 1**](./2_Seven_Segment_Assignments/Set_2/Problem_1/) | Sequence 0-9 (Common Cathode) | `DDRA`, `PORTA`, `TCNT1` | [**View**](https://wokwi.com/projects/452037027766689793) |
+| 2 | [**Problem 2**](./2_Seven_Segment_Assignments/Set_2/Problem_2/) | Sequence 0-9 (Common Anode) | `DDRA`, `PORTA`, `TCNT1` | [**View**](https://wokwi.com/projects/452037095608515585) |
+| 3 | [**Problem 3**](./2_Seven_Segment_Assignments/Set_2/Problem_3/) | (Duplicate of Problem 1) | `DDRA`, `PORTA`, `TCNT1` | [**View**](https://wokwi.com/projects/452037027766689793) |
+| 6 | [**Problem 6**](./2_Seven_Segment_Assignments/Set_2/Problem_6/) | Countdown 9-0 | `DDRA`, `PORTA`, `TCNT1` | [**View**](https://wokwi.com/projects/452037077877093377) |
+| 7 | [**Problem 7**](./2_Seven_Segment_Assignments/Set_2/Problem_7/) | Even Numbers (0-8) | `DDRA`, `PORTA`, `TCNT1` | [**View**](https://wokwi.com/projects/452037062276377601) |
+| 8 | [**Problem 8**](./2_Seven_Segment_Assignments/Set_2/Problem_8/) | Even then Odd Sequence | `DDRA`, `PORTA`, `TCNT1` | [**View**](https://wokwi.com/projects/452037043151397889) |
+| 9 | [**Problem 9**](./2_Seven_Segment_Assignments/Set_2/Problem_9/) | Alphanumeric Sequence | `DDRA`, `PORTA`, `TCNT1` | [**View**](https://wokwi.com/projects/452098175729115137) |
+| 10 | [**Problem 10**](./2_Seven_Segment_Assignments/Set_2/Problem_10/) | Prime Numbers (2,3,5,7) | `DDRA`, `PORTA`, `TCNT1` | [**View**](https://wokwi.com/projects/452098264037041153) |
+
+</details>
 
 </details>
 

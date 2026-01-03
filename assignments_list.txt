@@ -26,3 +26,19 @@ ETALVIS_LED_Set_3_Problem_1: [https://wokwi.com/projects/451229712541347841] ETA
 
 ETALVIS LED Set 4 (Complete)
 ETALVIS_LED_Set_4_Problem_1: [https://wokwi.com/projects/451305981969614849] ETALVIS_LED_Set_4_Problem_2: [https://wokwi.com/projects/451306004842207233] ETALVIS_LED_Set_4_Problem_3: [https://wokwi.com/projects/451306020763787265] ETALVIS_LED_Set_4_Problem_4: [https://wokwi.com/projects/451306062951152641] ETALVIS_LED_Set_4_Problem_5: [https://wokwi.com/projects/451306040146719745] ETALVIS_LED_Set_4_Problem_6: [https://wokwi.com/projects/451306091675844609] ETALVIS_LED_Set_4_Problem_7: [https://wokwi.com/projects/451306146569847809] ETALVIS_LED_Set_4_Problem_8: [https://wokwi.com/projects/451306164679805953] ETALVIS_LED_Set_4_Problem_9: [https://wokwi.com/projects/451306186028815361] ETALVIS_LED_Set_4_Problem_10: [https://wokwi.com/projects/451306204462786561]
+
+
+ETALVIS 7 Segment set 1 
+ETALVIS_7_Segment_Set_1_Problem_1-10  https://wokwi.com/projects/452036987984757761 (the problem is to print digits from 0-9 on common cathode display that can be executed in 1 single code) https://wokwi.com/projects/452037010100276225 set 1 problem 2
+
+ETALVIS_7_Segment_Set_2_Problem_1 https://wokwi.com/projects/452037027766689793
+ETALVIS_7_Segment_Set_2_Problem_2 https://wokwi.com/projects/452037095608515585
+ETALVIS_7_Segment_Set_2_Problem_3 https://wokwi.com/projects/452037027766689793
+( peoblem set 4-6 are similler to display these 3 using common anode)
+ETALVIS_7_Segment_Set_2_Problem_6 https://wokwi.com/projects/452037077877093377
+ETALVIS_7_Segment_Set_2_Problem_7 https://wokwi.com/projects/452037062276377601
+ETALVIS_7_Segment_Set_2_Problem_8 https://wokwi.com/projects/452037043151397889
+ETALVIS_7_Segment_Set_2_Problem_9 https://wokwi.com/projects/452098175729115137
+ETALVIS_7_Segment_Set_2_Problem_10  https://wokwi.com/projects/452098264037041153
+ 
+
