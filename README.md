@@ -10,14 +10,14 @@ The assignments and projects are categorized by interface type:
 - **2. Seven Segment Display**: Interfacing with 7-segment displays.
 - **3. Dot Matrix Display**: Controlling LED matrices.
 - **4. Keypad Interfaces**: Reading input from keypads.
+- **5. Pushbutton Assignments**: Controlling inputs with buttons.
 - **My Projects**: Custom personal projects.
 
 ---
 
 ## 1. 💡 LED Assignments
 
-<details>
-<summary><strong>Set 1: Basic LED Control</strong></summary>
+### Set 1: Basic LED Control
 
 | # | Problem | Objective | Registers Used | Simulation |
 |:-:| :--- | :--- | :--- | :---: |
@@ -32,10 +32,7 @@ The assignments and projects are categorized by interface type:
 | 9 | [**Problem 9**](./1_LED_Assignments/Set_1/Problem_9/) | Connect 8 LEDs to **Port L (Even)** | `DDRL`, `PORTL` | [**View**](https://wokwi.com/projects/450288081398026241) |
 | 10 | [**Problem 10**](./1_LED_Assignments/Set_1/Problem_10/) | Connect 8 LEDs to **Port E (Specific)** | `DDRE`, `PORTE` | [**View**](https://wokwi.com/projects/450288106353088513) |
 
-</details>
-
-<details>
-<summary><strong>Set 2: Sequence & Control</strong></summary>
+### Set 2: Sequence & Control
 
 | # | Problem | Objective | Registers Used | Simulation |
 |:-:| :--- | :--- | :--- | :---: |
@@ -50,10 +47,7 @@ The assignments and projects are categorized by interface type:
 | 9 | [**Problem 9**](./1_LED_Assignments/Set_2/Problem_9/) | Connect 8 LEDs to **Port F (7-4 Reverse)** | `DDRF`, `PORTF` | [**View**](https://wokwi.com/projects/451214725256879105) |
 | 10 | [**Problem 10**](./1_LED_Assignments/Set_2/Problem_10/) | Connect 8 LEDs to **Port F (Code 7-4 / Obj 3-0)** | `DDRF`, `PORTF` | [**View**](https://wokwi.com/projects/451214741914558465) |
 
-</details>
-
-<details>
-<summary><strong>Set 3: Pattern Logic</strong></summary>
+### Set 3: Pattern Logic
 
 | # | Problem | Objective | Registers Used | Simulation |
 |:-:| :--- | :--- | :--- | :---: |
@@ -68,10 +62,7 @@ The assignments and projects are categorized by interface type:
 | 9 | [**Problem 9**](./1_LED_Assignments/Set_3/Problem_9/) | Connect 8 LEDs to **Port A (Accumulate 0-7)** | `DDRA`, `PORTA` | [**View**](https://wokwi.com/projects/451233426803376129) |
 | 10 | [**Problem 10**](./1_LED_Assignments/Set_3/Problem_10/) | Connect 8 LEDs to **Port A (Accumulate 7-0)** | `DDRA`, `PORTA` | [**View**](https://wokwi.com/projects/451233531907399681) |
 
-</details>
-
-<details>
-<summary><strong>Set 4: Advanced LED Operations</strong></summary>
+### Set 4: Advanced LED Operations
 
 | # | Problem | Objective | Registers Used | Simulation |
 |:-:| :--- | :--- | :--- | :---: |
@@ -86,26 +77,18 @@ The assignments and projects are categorized by interface type:
 | 9 | [**Problem 9**](./1_LED_Assignments/Set_4/Problem_9/) | Pair Blink | `DDRA`, `DDRB` | [**View**](https://wokwi.com/projects/451306186028815361) |
 | 10 | [**Problem 10**](./1_LED_Assignments/Set_4/Problem_10/) | Reverse Pair Blink | `DDRA`, `DDRB` | [**View**](https://wokwi.com/projects/451306204462786561) |
 
-</details>
-
 ---
 
 ## 2. 🔢 Seven Segment Display
 
-<details>
-
-<details>
-<summary><strong>Set 1: Basic Display</strong></summary>
+### Set 1: Basic Display
 
 | # | Problem | Objective | Registers Used | Simulation |
 |:-:| :--- | :--- | :--- | :---: |
 | 1 | [**Problem 1**](./2_Seven_Segment_Assignments/Set_1/Problem_1/) | Interface 7-Segment (Display 0-9) | `DDRA`, `PORTA` | [**View**](https://wokwi.com/projects/452036987984757761) |
 | 2 | [**Problem 2**](./2_Seven_Segment_Assignments/Set_1/Problem_2/) | Display '1' (Single Digit) | `DDRA`, `PORTA` | [**View**](https://wokwi.com/projects/452037010100276225) |
 
-</details>
-
-<details>
-<summary><strong>Set 2: Sequence & Patterns</strong></summary>
+### Set 2: Sequence & Patterns
 
 | # | Problem | Objective | Registers Used | Simulation |
 |:-:| :--- | :--- | :--- | :---: |
@@ -118,31 +101,23 @@ The assignments and projects are categorized by interface type:
 | 9 | [**Problem 9**](./2_Seven_Segment_Assignments/Set_2/Problem_9/) | Alphanumeric Sequence | `DDRA`, `PORTA`, `TCNT1` | [**View**](https://wokwi.com/projects/452098175729115137) |
 | 10 | [**Problem 10**](./2_Seven_Segment_Assignments/Set_2/Problem_10/) | Prime Numbers (2,3,5,7) | `DDRA`, `PORTA`, `TCNT1` | [**View**](https://wokwi.com/projects/452098264037041153) |
 
-</details>
-
-</details>
-
 ---
 
 ## 3. 📉 Dot Matrix Display
 
-<details>
-<summary><strong>Assignments</strong></summary>
+### Assignments
 
 _(Coming Soon)_
 
 | # | Problem | Objective | Registers Used | Simulation |
 |:-:| :--- | :--- | :--- | :---: |
 | - | - | - | - | - |
-
-</details>
 
 ---
 
 ## 4. 🎹 Keypad Interfaces
 
-<details>
-<summary><strong>Assignments</strong></summary>
+### Assignments
 
 _(Coming Soon)_
 
@@ -150,7 +125,34 @@ _(Coming Soon)_
 |:-:| :--- | :--- | :--- | :---: |
 | - | - | - | - | - |
 
-</details>
+---
+
+## 5. 🔘 Pushbutton Assignments
+
+### Set 1: Basic Input Logic
+
+| # | Problem | Objective | Registers Used | Simulation |
+|:-:| :--- | :--- | :--- | :---: |
+| 1 | [**Problem 1**](./5_Pushbutton_Assignments/Set_1/Problem_1/) | Blink All LEDs (PB0) | `DDRA`, `PINB` | [**View**](https://wokwi.com/projects/452183870812217345) |
+| 2 | [**Problem 2**](./5_Pushbutton_Assignments/Set_1/Problem_2/) | Blink All LEDs (PB1) | `DDRA`, `PINB` | [**View**](https://wokwi.com/projects/452185679404594177) |
+| 3 | [**Problem 3**](./5_Pushbutton_Assignments/Set_1/Problem_3/) | Sequential Blink (PB3) | `DDRA`, `PINB` | [**View**](https://wokwi.com/projects/452185839910126593) |
+| 4 | [**Problem 4**](./5_Pushbutton_Assignments/Set_1/Problem_4/) | Reverse Sequence (Any) | `DDRA`, `PINB` | [**View**](https://wokwi.com/projects/452186460932438017) |
+| 5 | [**Problem 5**](./5_Pushbutton_Assignments/Set_1/Problem_5/) | Even LEDs (PB0) | `DDRA`, `PINB` | [**View**](https://wokwi.com/projects/452187170854083585) |
+| 6 | [**Problem 6**](./5_Pushbutton_Assignments/Set_1/Problem_6/) | Odd LEDs (PB6) | `DDRA`, `PINB` | [**View**](https://wokwi.com/projects/452187512824093697) |
+| 7 | [**Problem 7**](./5_Pushbutton_Assignments/Set_1/Problem_7/) | Direct Mapping | `DDRA`, `PINB` | [**View**](https://wokwi.com/projects/452187995574876161) |
+| 8 | [**Problem 8**](./5_Pushbutton_Assignments/Set_1/Problem_8/) | Reverse Mapping | `DDRA`, `PINB` | [**View**](https://wokwi.com/projects/452188840668442625) |
+| 9 | [**Problem 9**](./5_Pushbutton_Assignments/Set_1/Problem_9/) | Continuous Sequence | `DDRA`, `PINB` | [**View**](https://wokwi.com/projects/452189299531608065) |
+| 10 | [**Problem 10**](./5_Pushbutton_Assignments/Set_1/Problem_10/) | Specific Pattern (PB0) | `DDRA`, `PINB` | [**View**](https://wokwi.com/projects/452189448813191169) |
+
+### Set 2: Advanced Sequences
+
+| # | Problem | Objective | Registers Used | Simulation |
+|:-:| :--- | :--- | :--- | :---: |
+| 1 | [**Problem 1**](./5_Pushbutton_Assignments/Set_2/Problem_1/) | Sequence 1-2-5-6 (PB1) | `DDRA`, `PINB` | [**View**](https://wokwi.com/projects/452196801538531329) |
+| 2 | [**Problem 2**](./5_Pushbutton_Assignments/Set_2/Problem_2/) | Sequence 3-1-7-4 (PB2) | `DDRA`, `PINB` | [**View**](https://wokwi.com/projects/452196801538531329) |
+| 3 | [**Problem 3**](./5_Pushbutton_Assignments/Set_2/Problem_3/) | Sequence 0-1-5-6 (PB3) | `DDRA`, `PINB` | [**View**](https://wokwi.com/projects/452196801538531329) |
+| 4 | [**Problem 4**](./5_Pushbutton_Assignments/Set_2/Problem_4/) | Sequence 3-5-7-6 (PB5) | `DDRA`, `PINB` | [**View**](https://wokwi.com/projects/452196801538531329) |
+| 5 | [**Problem 5**](./5_Pushbutton_Assignments/Set_2/Problem_5/) | Sequence 0-1-4-7 (PB7) | `DDRA`, `PINB` | [**View**](https://wokwi.com/projects/452196801538531329) |
 
 ---
 

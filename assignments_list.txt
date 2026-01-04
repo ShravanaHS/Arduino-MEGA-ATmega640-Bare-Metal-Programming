@@ -41,4 +41,30 @@ ETALVIS_7_Segment_Set_2_Problem_8 https://wokwi.com/projects/452037043151397889
 ETALVIS_7_Segment_Set_2_Problem_9 https://wokwi.com/projects/452098175729115137
 ETALVIS_7_Segment_Set_2_Problem_10  https://wokwi.com/projects/452098264037041153
  
+ETALVIS_7_Segment_Set_3_Problem_1 
+https://wokwi.com/projects/452143766976111617
+
+ETALVIS_7_Segment_Set_3_Problem_2 -10 circuit is same as https://wokwi.com/projects/452143766976111617
+but codes are different i will paste that here 
+4 segment display counting
+https://wokwi.com/projects/452144145866484737
+
+
+
+
+PUSHBUTTON set 1
+ETALVIS_pushbutton_Problem_1 : https://wokwi.com/projects/452183870812217345
+ETALVIS_pushbutton_Problem_2 : https://wokwi.com/projects/452185679404594177
+ETALVIS_pushbutton_Problem_3 : https://wokwi.com/projects/452185839910126593
+ETALVIS_pushbutton_Problem_4 : https://wokwi.com/projects/452186460932438017
+ETALVIS_pushbutton_Problem_5 : https://wokwi.com/projects/452187170854083585
+ETALVIS_pushbutton_Problem_6 : https://wokwi.com/projects/452187512824093697
+ETALVIS_pushbutton_Problem_7 : https://wokwi.com/projects/452187995574876161
+ETALVIS_pushbutton_Problem_8 : https://wokwi.com/projects/452188840668442625
+ETALVIS_pushbutton_Problem_9 : https://wokwi.com/projects/452189299531608065
+ETALVIS_pushbutton_Problem_10: https://wokwi.com/projects/452189448813191169
+
+PUSHBUTTON set 2 all problems in one link : https://wokwi.com/projects/452196801538531329
+here i have all problemstatemenrts and codes for set 2 do it similleary to the led sets
+
 
