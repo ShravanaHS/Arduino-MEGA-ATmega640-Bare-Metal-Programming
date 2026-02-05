@@ -68,3 +68,18 @@ PUSHBUTTON set 2 all problems in one link : https://wokwi.com/projects/452196801
 here i have all problemstatemenrts and codes for set 2 do it similleary to the led sets
 
 
+
+
+ETALVIS KEYPAD ASSIGNMENTS
+ETALVIS_keypad_class https://wokwi.com/projects/454448194463354881 (problem statement: 2x2 switch matrix implementation )
+ETALVIS_keypad_class https://wokwi.com/projects/454720769713231873 (problem statement: 4x4 switch matrix implementation with keypad and led )
+ETALVIS_keypad_P01 https://wokwi.com/projects/454360648269822977 (problem statement: show the button pressed on 7 segment display )
+ETALVIS_keypad_P02 https://wokwi.com/projects/454754911592402945 (problem statement: used 4 digithseven segment display and show 4 button presses )
+ETALVIS_keypad_P03 https://wokwi.com/projects/454762678885238785 (problem statement: perform single digit addition )
+ETALVIS_keypad_P04 https://wokwi.com/projects/455081761281239041 ( single digit calculator which performs +-/*
+ETALVIS_keypad_P05 
+ETALVIS_keypad_P06 
+ETALVIS_keypad_P07 
+ETALVIS_keypad_P08 
+ETALVIS_keypad_P09 
+ETALVIS_keypad_P10 
