@@ -74,6 +74,47 @@ void loop() {
 -   **Port Manipulation**: Instead of turning on 8 LEDs one by one with `digitalWrite`, we can do it all instantly by writing one number (`0xAA`) to the Port register.
 -   **Volatile Keyword**: Essential for Bare Metal programming to ensure the compiler doesn't ignore our direct hardware access.
 
+## Circuit Diagram (JSON Schematic)
+
+```json
+{
+  "version": 1,
+  "author": "ShravanaHS",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "wokwi-arduino-mega", "id": "mega", "top": 0, "left": 0, "attrs": {} },
+    { "type": "wokwi-resistor", "id": "r1", "top": 50,  "left": 220, "attrs": { "value": "220" } },
+    { "type": "wokwi-led",      "id": "led1", "top": 50,  "left": 310, "attrs": { "color": "red" } },
+    { "type": "wokwi-resistor", "id": "r2", "top": 100, "left": 220, "attrs": { "value": "220" } },
+    { "type": "wokwi-led",      "id": "led2", "top": 100, "left": 310, "attrs": { "color": "blue" } },
+    { "type": "wokwi-resistor", "id": "r3", "top": 150, "left": 220, "attrs": { "value": "220" } },
+    { "type": "wokwi-led",      "id": "led3", "top": 150, "left": 310, "attrs": { "color": "red" } },
+    { "type": "wokwi-resistor", "id": "r4", "top": 200, "left": 220, "attrs": { "value": "220" } },
+    { "type": "wokwi-led",      "id": "led4", "top": 200, "left": 310, "attrs": { "color": "blue" } },
+    { "type": "wokwi-resistor", "id": "r5", "top": 250, "left": 220, "attrs": { "value": "220" } },
+    { "type": "wokwi-led",      "id": "led5", "top": 250, "left": 310, "attrs": { "color": "red" } },
+    { "type": "wokwi-resistor", "id": "r6", "top": 300, "left": 220, "attrs": { "value": "220" } },
+    { "type": "wokwi-led",      "id": "led6", "top": 300, "left": 310, "attrs": { "color": "blue" } },
+    { "type": "wokwi-resistor", "id": "r7", "top": 350, "left": 220, "attrs": { "value": "220" } },
+    { "type": "wokwi-led",      "id": "led7", "top": 350, "left": 310, "attrs": { "color": "red" } },
+    { "type": "wokwi-resistor", "id": "r8", "top": 400, "left": 220, "attrs": { "value": "220" } },
+    { "type": "wokwi-led",      "id": "led8", "top": 400, "left": 310, "attrs": { "color": "blue" } }
+  ],
+  "connections": [
+    [ "mega:A8",  "r1:1", "green", [] ], [ "r1:2", "led1:A", "green", [] ], [ "led1:K", "mega:GND.1", "black", [] ],
+    [ "mega:A9",  "r2:1", "blue",  [] ], [ "r2:2", "led2:A", "blue",  [] ], [ "led2:K", "mega:GND.1", "black", [] ],
+    [ "mega:A10", "r3:1", "green", [] ], [ "r3:2", "led3:A", "green", [] ], [ "led3:K", "mega:GND.1", "black", [] ],
+    [ "mega:A11", "r4:1", "blue",  [] ], [ "r4:2", "led4:A", "blue",  [] ], [ "led4:K", "mega:GND.1", "black", [] ],
+    [ "mega:A12", "r5:1", "green", [] ], [ "r5:2", "led5:A", "green", [] ], [ "led5:K", "mega:GND.1", "black", [] ],
+    [ "mega:A13", "r6:1", "blue",  [] ], [ "r6:2", "led6:A", "blue",  [] ], [ "led6:K", "mega:GND.1", "black", [] ],
+    [ "mega:A14", "r7:1", "green", [] ], [ "r7:2", "led7:A", "green", [] ], [ "led7:K", "mega:GND.1", "black", [] ],
+    [ "mega:A15", "r8:1", "blue",  [] ], [ "r8:2", "led8:A", "blue",  [] ], [ "led8:K", "mega:GND.1", "black", [] ]
+  ]
+}
+```
+
+> **Pin Mapping**: Port K Bits 0-7 = MEGA Analog Pins A8-A15. Red LEDs = 0xAA pattern (bits 7,5,3,1). Blue LEDs = 0x55 pattern (bits 6,4,2,0).
+
 ## Visuals
 ![Simulation Output](./simulation_screenshot.png)
 [Click here to run the simulation on Wokwi](https://wokwi.com/projects/450288060923527169)

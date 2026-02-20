@@ -60,6 +60,28 @@ void loop() {
 -   **Read-Modify-Write**: Using `|=` and `&=` allows us to change *just one bit* without overwriting the entire byte. This is crucial when other pins on the same port are connected to other devices.
 -   **Standard Naming**: naming macros `PORTD` and `DDRD` matches the official datasheet conventions.
 
+## Circuit Diagram (JSON Schematic)
+
+```json
+{
+  "version": 1,
+  "author": "ShravanaHS",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "wokwi-arduino-mega", "id": "mega", "top": 0, "left": 0, "attrs": {} },
+    { "type": "wokwi-resistor", "id": "r1", "top": 150, "left": 220, "attrs": { "value": "220" } },
+    { "type": "wokwi-led", "id": "led1", "top": 150, "left": 310, "attrs": { "color": "red" } }
+  ],
+  "connections": [
+    [ "mega:38", "r1:1", "green", [] ],
+    [ "r1:2", "led1:A", "green", [] ],
+    [ "led1:K", "mega:GND.1", "black", [] ]
+  ]
+}
+```
+
+> **Pin Mapping**: Arduino MEGA Digital Pin 38 = Port D, Bit 7. LED anode → 220Ω resistor → Pin 38. LED cathode → GND.
+
 ## Visuals
 ![Simulation Output](./simulation_screenshot.png)
 [Click here to run the simulation on Wokwi](https://wokwi.com/projects/450221318023254017)

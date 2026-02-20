@@ -54,6 +54,33 @@ void loop() {
 -   **Mask Definitions**: It is often helpful to define a mask, e.g., `#define MASK_HIGH_BITS ((1<<7)|(1<<6))`, to make the main code more readable.
 -   **Port C**: Commonly used for LCDs or simple IO on the Mega.
 
+## Circuit Diagram (JSON Schematic)
+
+```json
+{
+  "version": 1,
+  "author": "ShravanaHS",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "wokwi-arduino-mega", "id": "mega", "top": 0, "left": 0, "attrs": {} },
+    { "type": "wokwi-resistor", "id": "r1", "top": 100, "left": 220, "attrs": { "value": "220" } },
+    { "type": "wokwi-led",      "id": "led1", "top": 100, "left": 310, "attrs": { "color": "red" } },
+    { "type": "wokwi-resistor", "id": "r2", "top": 200, "left": 220, "attrs": { "value": "220" } },
+    { "type": "wokwi-led",      "id": "led2", "top": 200, "left": 310, "attrs": { "color": "red" } }
+  ],
+  "connections": [
+    [ "mega:30", "r1:1", "green", [] ],
+    [ "r1:2",   "led1:A", "green", [] ],
+    [ "led1:K", "mega:GND.1", "black", [] ],
+    [ "mega:31", "r2:1", "blue", [] ],
+    [ "r2:2",   "led2:A", "blue", [] ],
+    [ "led2:K", "mega:GND.1", "black", [] ]
+  ]
+}
+```
+
+> **Pin Mapping**: Pin 30 = Port C Bit 7 (LED1). Pin 31 = Port C Bit 6 (LED2).
+
 ## Visuals
 ![Simulation Output](./simulation_screenshot.png)
 [Click here to run the simulation on Wokwi](https://wokwi.com/projects/450287676924481537)

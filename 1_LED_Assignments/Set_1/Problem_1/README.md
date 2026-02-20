@@ -60,6 +60,28 @@ void loop() {
 -   **Hexadecimal Basics**: `0x01` represents binary `00000001`, targeting the first bit (Bit 0).
 -   **Blinking Logic**: A loop of ON -> Wait -> OFF -> Wait is the fundamental "Hello World" of electronics.
 
+## Circuit Diagram (JSON Schematic)
+
+```json
+{
+  "version": 1,
+  "author": "ShravanaHS",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "wokwi-arduino-mega", "id": "mega", "top": 0, "left": 0, "attrs": {} },
+    { "type": "wokwi-resistor", "id": "r1", "top": 150, "left": 220, "attrs": { "value": "220" } },
+    { "type": "wokwi-led", "id": "led1", "top": 150, "left": 310, "attrs": { "color": "red" } }
+  ],
+  "connections": [
+    [ "mega:14", "r1:1", "green", [] ],
+    [ "r1:2", "led1:A", "green", [] ],
+    [ "led1:K", "mega:GND.1", "black", [] ]
+  ]
+}
+```
+
+> **Pin Mapping**: Arduino MEGA Digital Pin 14 = Port J, Bit 0. LED anode → 220Ω resistor → Pin 14. LED cathode → GND.
+
 ## Visuals
 ![Simulation Output](./simulation_screenshot.png)
 [Click here to run the simulation on Wokwi](https://wokwi.com/projects/450218684197143553)

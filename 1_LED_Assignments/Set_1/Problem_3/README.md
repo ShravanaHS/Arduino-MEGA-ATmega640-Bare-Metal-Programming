@@ -60,6 +60,33 @@ void loop() {
 -   **Simultaneous Control**: Bare metal programming allows modifying multiple pins in partially disconnected positions (0 and 6) instantly in one clock cycle.
 -   **Operator Precedence**: Using parentheses `~((1<<6) | (1<<0))` ensures we create the full mask `01000001` first, then flip it to `10111110` to clear the bits.
 
+## Circuit Diagram (JSON Schematic)
+
+```json
+{
+  "version": 1,
+  "author": "ShravanaHS",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "wokwi-arduino-mega", "id": "mega", "top": 0, "left": 0, "attrs": {} },
+    { "type": "wokwi-resistor", "id": "r1", "top": 100, "left": 220, "attrs": { "value": "220" } },
+    { "type": "wokwi-led",      "id": "led1", "top": 100, "left": 310, "attrs": { "color": "red" } },
+    { "type": "wokwi-resistor", "id": "r2", "top": 200, "left": 220, "attrs": { "value": "220" } },
+    { "type": "wokwi-led",      "id": "led2", "top": 200, "left": 310, "attrs": { "color": "red" } }
+  ],
+  "connections": [
+    [ "mega:9",  "r1:1", "green", [] ],
+    [ "r1:2",   "led1:A", "green", [] ],
+    [ "led1:K", "mega:GND.1", "black", [] ],
+    [ "mega:16", "r2:1", "blue", [] ],
+    [ "r2:2",   "led2:A", "blue", [] ],
+    [ "led2:K", "mega:GND.1", "black", [] ]
+  ]
+}
+```
+
+> **Pin Mapping**: Pin 9 = Port H Bit 6 (LED1). Pin 16 = Port H Bit 0 (LED2). Both LEDs share GND.
+
 ## Visuals
 ![Simulation Output](./simulation_screenshot.png)
 [Click here to run the simulation on Wokwi](https://wokwi.com/projects/450284628790415361)
